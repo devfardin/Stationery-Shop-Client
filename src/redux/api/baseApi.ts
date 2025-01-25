@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { BaseQueryApi, BaseQueryFn, DefinitionType, FetchArgs, fetchBaseQuery } from "@reduxjs/toolkit/query";
 import { RootState } from "../store";
+import { logOut, setUser } from "../features/auth/authApi";
+import { createApi } from "@reduxjs/toolkit/query/react";
 
 const baseQuery = fetchBaseQuery({
     baseUrl: 'http://localhost:5000/api/v1',
@@ -29,9 +31,19 @@ const baseQuery = fetchBaseQuery({
         if(data?.data?.accessToken) {
             const user = (api.getState() as RootState).auth.user;
             api.dispatch(
-                setU
-            )
+                setUser({user, token: data?.data?.accessToken})
+            );
+            result = await baseQuery(args,  api, extraOptions);
+        } else {
+            api.dispatch(logOut())
         }
-        
     }
+    return result;
   }
+
+//   create base api
+export const baseApi = createApi({
+    reducerPath: 'baseApi',
+    baseQuery: baseQueryWithRefreshToken,
+    endpoints: () => ({})
+});
