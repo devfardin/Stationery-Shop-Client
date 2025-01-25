@@ -42,7 +42,7 @@ const Categories = () => {
                     <div className="relative group">
                         <Swiper
                             slidesPerView={1}
-                            spaceBetween={25}
+                            spaceBetween={30}
                             breakpoints={{
                                 576: {
                                     slidesPerView: 2,
@@ -80,7 +80,7 @@ const Categories = () => {
                             {categorys.map((category, index) => (
                                 <SwiperSlide key={index}>
                                     <div className="">
-                                        <img src={category?.image} className="w-full rounded-lg" alt="" />
+                                        <img src={category?.image} className="w-full rounded-xl" alt="" />
                                         <div className="flex flex-row items-center justify-between mt-3 px-2">
                                             <h2 className="text-lg font-normal text-heading">
                                                 {category?.category}
