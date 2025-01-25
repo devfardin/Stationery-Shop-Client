@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { BaseQueryApi, BaseQueryFn, DefinitionType, FetchArgs, fetchBaseQuery } from "@reduxjs/toolkit/query";
 import { RootState } from "../store";
-import { logOut, setUser } from "../features/auth/authApi";
+import { logOut, setUser } from "../features/auth/authSlice";
 import { createApi } from "@reduxjs/toolkit/query/react";
 
 const baseQuery = fetchBaseQuery({
