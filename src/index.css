@@ -1,1 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
+
+body{
+    font-family: "Jost", sans-serif;
+    font-optical-sizing: auto;
+ }
+ .group-scoped:hover .hover-color{
+    color: white;
+ }
+ @layer base {
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+  
+ 
+  /* width */
+ ::-webkit-scrollbar {
+    width: 3px;
+ }
+ 
+ /* Track */
+ ::-webkit-scrollbar-track {
+    background: #c5c5c5;
+ }
+ 
+ /* Handle */
+ ::-webkit-scrollbar-thumb {
+    background: #757FEF;
+    border-radius: 5px;
+ }
+ 
+ /* Handle on hover */
+ ::-webkit-scrollbar-thumb:hover {
+    background: #599A8D;
+ }
+  
+ @media screen and (max-width: 40em) {
+    .responsiveTable tbody tr {
+        border: none !important;
+    }
+ }
+ .cart-table-td{
+    padding: 1.5rem 1rem !important;
+ }
+ /* Rich Text Area */
+ .ql-container.ql-snow {
+    height: 150px !important;
+ }

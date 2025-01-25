@@ -1,11 +1,8 @@
 import logo from '../../assets/images/logo.png'
-import { TfiReload, TfiUser } from 'react-icons/tfi';
+import { TfiUser } from 'react-icons/tfi';
 import { BsCart2 } from 'react-icons/bs';
-import { IoMdHeartEmpty } from 'react-icons/io';
-import { GoSearch } from 'react-icons/go';
 import { Link, NavLink } from "react-router"
 import Container from '../share/Container';
-
 
 const Header = () => {
     const menuItems = [
@@ -15,7 +12,7 @@ const Header = () => {
         },
         {
           title: "About Us",
-          link: "/about-us",
+          link: "/about",
         },
         {
           title: "Shop",
@@ -23,17 +20,14 @@ const Header = () => {
         },
         {
           title: "Blogs",
-          link: "/blogs",
+          link: "/blog",
         },
         {
           title: "Contact",
-          link: "/contact-us",
-        },
-        {
-          title: "Order Track",
-          link: "/order-track",
+          link: "/contact",
         },
       ];
+      const user = false;
   return (
     <div>
       <Container>
@@ -57,8 +51,8 @@ const Header = () => {
                       isPending
                         ? "text-red-600"
                         : isActive
-                        ? "text-lg  font-norma text-primary transition-all duration-300"
-                        : "text-lg  font-normal text-black hover:text-primary transition-all duration-300"
+                        ? "text-xl  font-normal text-red-500 transition-all duration-300"
+                        : "text-xl  font-normal text-black hover:text-[#2FBEEF] transition-all duration-300"
                     }
                   >
                     {items.title}
@@ -69,57 +63,13 @@ const Header = () => {
 
               {/* User quick Icon */}
               <div className="flex gap-3 justify-between items-center">
-                {/* Search Icons */}
-                <div className="p-3.5  lg:p-4 hover:bg-primary duration-300 transition-all group bg-neutral-200">
-                  <Link to="/">
-                    <GoSearch className="text-xl group-hover:text-white duration-300 transition-all" />
-                  </Link>
-                </div>
-
-                {/* Compire Icons */}
-                <Link
-                  to="/compare"
-                  className="p-3.5 lg:p-4 hover:bg-primary duration-300 transition-all group bg-neutral-200"
-                >
-                </Link>
-                  <div>
-                    <TfiReload className="text-xl  group-hover:text-white duration-300 transition-all" />
-                  </div>
-
-                {/* Wishlist Icons */}
-                <div className="relative group">
-                  <div className="p-3.5 relative lg:p-4 hover:bg-primary duration-300 transition-all group bg-neutral-200">
-                    <div>
-                      <IoMdHeartEmpty className="text-xl  group-hover:text-white duration-300 transition-all" />
-                      <span className="absolute -right-0 top-0.5 flex h-[20px] w-[20px] items-center justify-center rounded-full bg-primary text-center text-[11px] text-white ">
-                        0
-                      </span>
-                    </div>
-                  </div>
-                  {/* Hover cart */}
-                  <div className="absolute group-hover:scale-100 scale-0 delay-150 group-hover:block duration-150 ease-in-out p-5 right-0 z-10 w-[400px] shadow-md bg-white">
-                    <h1 className="text-lg font-normal text-neutral-600">
-                      No Items In Wishlist
-                    </h1>
-                    {/* <LinkButton
-                      label="Check Out"
-                      fullWidth={true}
-                      link={"/about-us"}
-                    ></LinkButton> */}
-                    {/* <LinkButtonOut
-                      label={"Wishlist"}
-                      fullWidth={true}
-                      link={"/wishlist"}
-                    ></LinkButtonOut> */}
-                  </div>
-                </div>
 
                 {/* Cart Icons */}
                 <div className="relative group">
                   <div className="p-3.5  group-hover:bg-primary relative lg:p-4 hover:bg-primary duration-300 transition-all group bg-neutral-200">
                     <div>
-                      <BsCart2 className="text-xl !z-10 group-hover:text-white duration-300 transition-all" />
-                      <span className="absolute duration-300 right-0 top-0.5 flex h-[20px] w-[20px] items-center justify-center rounded-full bg-primary text-center text-[11px] text-white ">
+                      <BsCart2 className="text-xl !z-10 group-hover:text-[#2FBEEF] duration-300 transition-all" />
+                      <span className="absolute duration-300 right-0 top-0.5 flex h-[20px] w-[20px] items-center justify-center rounded-full bg-[#FF699B] text-center text-[11px] text-white ">
                         {/* { cartItems?.length } */} 10
                       </span>
                     </div>
@@ -141,7 +91,7 @@ const Header = () => {
                 <div className="relative group">
                   <div className="p-3.5 lg:p-4 hover:bg-primary group-hover:bg-primary  duration-300 transition-all bg-neutral-200">
                     <div>
-                      <TfiUser className="text-xl group-hover:text-white duration-300 transition-all" />
+                      <TfiUser className="text-xl group-hover:text-[#2FBEEF] duration-300 transition-all" />
                     </div>
                   </div>
                   {/* Hover Menu */}
@@ -150,11 +100,11 @@ const Header = () => {
                     transform group-hover:translate-y-0 transition-transform 
                     duration-500 ease-in-out  group-hover:block"
                   >
-                    {/* <div className="flex flex-col items-center justify-center">
+                    <div className="flex flex-col items-center justify-center">
                       {user ? (
                         <>
                          <Link
-                          className="hover:bg-primary hover:text-white duration-200
+                          className="hover:bg-primary hover:text-[#2FBEEF] duration-200
                          py-3 px-5 text-start text-base w-full border-b"
                           to="/dashboard"
                         >
@@ -162,9 +112,10 @@ const Header = () => {
                         </Link>
 
                         <button
-                        className="hover:bg-primary hover:text-white duration-200
+                        className="hover:bg-primary hover:text-[#2FBEEF] duration-200
                          py-3 px-5 text-start text-base w-full"
-                        onClick={()=> logOut()}>
+                        // onClick={()=> logOut()}
+                        >
                           Log Out
                         </button>
 
@@ -172,14 +123,14 @@ const Header = () => {
                       ) : (
                         <>
                           <Link
-                            className="hover:bg-primary hover:text-white duration-200
+                            className="hover:bg-primary hover:text-[#2FBEEF] duration-200
                         py-3 px-5 text-start text-base font-normal border-b w-full"
                             to="/login"
                           >
                             Login
                           </Link>
                           <Link
-                            className="hover:bg-primary hover:text-white duration-200
+                            className="hover:bg-primary hover:text-[#2FBEEF] duration-200
                          py-3 px-5 text-start text-base w-full"
                             to="./register"
                           >
@@ -187,7 +138,7 @@ const Header = () => {
                           </Link>
                         </>
                       )}
-                    </div> */}
+                    </div>
                   </div>
                 </div>
               </div>
