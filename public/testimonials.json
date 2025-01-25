@@ -2,52 +2,62 @@
     {
       "name": "John Doe",
       "rating": 5,
-      "comment": "Excellent service! Highly recommended. The team was very professional and exceeded my expectations."
+      "comment": "Excellent service! Highly recommended. The team was very professional and exceeded my expectations.",
+      "image": "https://toyman-demo.myshopify.com/cdn/shop/files/review1_100x.png?v=1676103878"
     },
     {
       "name": "Jane Smith",
       "rating": 4.5,
-      "comment": "Great experience. Very attentive to my needs, but there was a slight delay in delivery."
+      "comment": "Great experience. Very attentive to my needs, but there was a slight delay in delivery.",
+      "image": "https://toyman-demo.myshopify.com/cdn/shop/files/review2_1_100x.png?v=1676103916"
     },
     {
       "name": "Michael Johnson",
       "rating": 4,
-      "comment": "Good service overall, but there is some room for improvement in communication."
+      "comment": "Good service overall, but there is some room for improvement in communication.",
+      "image": "https://toyman-demo.myshopify.com/cdn/shop/files/review1_100x.png?v=1676103878"
     },
     {
       "name": "Emily Davis",
       "rating": 5,
-      "comment": "Outstanding support and quality work! I am very happy with the results."
+      "comment": "Outstanding support and quality work! I am very happy with the results.",
+      "image": "https://toyman-demo.myshopify.com/cdn/shop/files/review2_1_100x.png?v=1676103916"
     },
     {
       "name": "Daniel Brown",
       "rating": 4.8,
-      "comment": "Fantastic experience! They delivered exactly what I was looking for."
+      "comment": "Fantastic experience! They delivered exactly what I was looking for.",
+      "image": "https://toyman-demo.myshopify.com/cdn/shop/files/review1_100x.png?v=1676103878"
     },
     {
       "name": "Sarah Wilson",
       "rating": 5,
-      "comment": "The team was very professional, and their attention to detail was impressive."
+      "comment": "The team was very professional, and their attention to detail was impressive.",
+      "image": "https://toyman-demo.myshopify.com/cdn/shop/files/review2_1_100x.png?v=1676103916"
     },
     {
       "name": "Chris Lee",
       "rating": 3.5,
-      "comment": "The service was okay, but I expected more based on the reviews."
+      "comment": "The service was okay, but I expected more based on the reviews.",
+      "image": "https://toyman-demo.myshopify.com/cdn/shop/files/review1_100x.png?v=1676103878"
     },
     {
       "name": "Jessica Taylor",
       "rating": 5,
-      "comment": "Highly reliable and efficient. I would definitely use their services again."
+      "comment": "Highly reliable and efficient. I would definitely use their services again.",
+      "image": "https://toyman-demo.myshopify.com/cdn/shop/files/review2_1_100x.png?v=1676103916"
     },
     {
       "name": "Robert Martinez",
       "rating": 4.2,
-      "comment": "Great service! The quality of work was top-notch, though the pricing was a bit high."
+      "comment": "Great service! The quality of work was top-notch, though the pricing was a bit high.",
+      "image": "https://toyman-demo.myshopify.com/cdn/shop/files/review1_100x.png?v=1676103878"
     },
     {
       "name": "Olivia Anderson",
       "rating": 5,
-      "comment": "Absolutely amazing! They went above and beyond to meet my needs."
+      "comment": "Absolutely amazing! They went above and beyond to meet my needs.",
+      "image": "https://toyman-demo.myshopify.com/cdn/shop/files/review1_100x.png?v=1676103878"
     }
   ]
   

@@ -16,8 +16,6 @@ const PopularProducts = () => {
                     setLoading(false);
                 });
         }, []);
-        console.log(product);
-        
   return (
     <div className='mt-20'>
       <Container>

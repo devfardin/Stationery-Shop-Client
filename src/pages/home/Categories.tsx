@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-// ImportSwiper styles
-// import required modules
+
 import { Navigation } from "swiper/modules";
 import { useEffect, useState } from "react";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
