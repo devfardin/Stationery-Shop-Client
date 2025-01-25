@@ -1,10 +1,10 @@
-import Container from '../../share/Container';
-import logo from '../../../assets/images/logo.png'
+import logo from '../../assets/images/logo.png'
 import { TfiReload, TfiUser } from 'react-icons/tfi';
 import { BsCart2 } from 'react-icons/bs';
 import { IoMdHeartEmpty } from 'react-icons/io';
 import { GoSearch } from 'react-icons/go';
 import { Link, NavLink } from "react-router"
+import Container from '../share/Container';
 
 
 const Header = () => {
