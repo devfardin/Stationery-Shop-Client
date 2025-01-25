@@ -32,7 +32,7 @@ const Header = () => {
           link: "/contact",
         },
       ];
-      const user = true;
+      const user = false;
   return (
     <div className='border-b border-neutral-200'>
       <Container>
@@ -129,15 +129,15 @@ const Header = () => {
                       ) : (
                         <>
                           <Link
-                            className="hover:bg-primary hover:text-[#2FBEEF] duration-200
-                        py-3 px-5 text-start text-base font-normal border-b w-full"
+                            className="hover:bg-primary hover:text-white duration-200
+                         py-3 px-5 text-start text-base w-full border-b border-primary"
                             to="/login"
                           >
                             Login
                           </Link>
                           <Link
-                            className="hover:bg-primary hover:text-[#2FBEEF] duration-200
-                         py-3 px-5 text-start text-base w-full"
+                            className="hover:bg-primary hover:text-white duration-200
+                         py-3 px-5 text-start text-base w-full border-b border-primary"
                             to="./register"
                           >
                             Register

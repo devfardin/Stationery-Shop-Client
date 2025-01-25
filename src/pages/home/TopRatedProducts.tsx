@@ -10,7 +10,6 @@ const TopRatedProducts = () => {
                             all new customers</h1>
                     </div>
                 </div>
-
             </Container>
         </div>
     )
