@@ -1,0 +1,53 @@
+[
+    {
+      "name": "John Doe",
+      "rating": 5,
+      "comment": "Excellent service! Highly recommended. The team was very professional and exceeded my expectations."
+    },
+    {
+      "name": "Jane Smith",
+      "rating": 4.5,
+      "comment": "Great experience. Very attentive to my needs, but there was a slight delay in delivery."
+    },
+    {
+      "name": "Michael Johnson",
+      "rating": 4,
+      "comment": "Good service overall, but there is some room for improvement in communication."
+    },
+    {
+      "name": "Emily Davis",
+      "rating": 5,
+      "comment": "Outstanding support and quality work! I am very happy with the results."
+    },
+    {
+      "name": "Daniel Brown",
+      "rating": 4.8,
+      "comment": "Fantastic experience! They delivered exactly what I was looking for."
+    },
+    {
+      "name": "Sarah Wilson",
+      "rating": 5,
+      "comment": "The team was very professional, and their attention to detail was impressive."
+    },
+    {
+      "name": "Chris Lee",
+      "rating": 3.5,
+      "comment": "The service was okay, but I expected more based on the reviews."
+    },
+    {
+      "name": "Jessica Taylor",
+      "rating": 5,
+      "comment": "Highly reliable and efficient. I would definitely use their services again."
+    },
+    {
+      "name": "Robert Martinez",
+      "rating": 4.2,
+      "comment": "Great service! The quality of work was top-notch, though the pricing was a bit high."
+    },
+    {
+      "name": "Olivia Anderson",
+      "rating": 5,
+      "comment": "Absolutely amazing! They went above and beyond to meet my needs."
+    }
+  ]
+  

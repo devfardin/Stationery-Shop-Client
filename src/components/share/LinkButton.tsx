@@ -2,7 +2,7 @@ import { Link } from 'react-router'
 
 type TLinkButton = {
     label: string,
-    fullWidth: boolean,
+    fullWidth?: boolean,
     link: string,
 }
 const LinkButton = ({ label, fullWidth, link }: TLinkButton) => {
