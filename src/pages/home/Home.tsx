@@ -1,10 +1,13 @@
+import Categories from "./Categories"
 import HeroSection from "./HeroSection"
+import PopularProducts from "./PopularProducts"
 
 const Home = () => {
   return (
     <div>
       <HeroSection/>
-      <h1 className='text-secondary'>Home page</h1>
+      <Categories/>
+      <PopularProducts/>
     </div>
   )
 }
