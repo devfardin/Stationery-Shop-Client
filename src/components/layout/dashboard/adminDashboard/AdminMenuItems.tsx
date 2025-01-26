@@ -1,8 +1,8 @@
 import React from "react";
 import { RxDashboard } from "react-icons/rx";
 import { FaHome } from "react-icons/fa";
-import { BsCartCheck, BsShop } from "react-icons/bs";
-import { MdOutlineAddBusiness } from "react-icons/md";
+import { BsBoxSeam, BsCartCheck, BsShop } from "react-icons/bs";
+import { MdOutlineAddBusiness, MdOutlineAddchart } from "react-icons/md";
 import SidebarLink from "../component/SidebarLink";
 import { TfiShoppingCartFull } from "react-icons/tfi";
 
@@ -24,16 +24,21 @@ const AdminMenuItems:React.FC<AdminMenuItemsProps> = ({ isOpen }) => {
         {
           label:'All Products',
           link:'products',
-          icon: BsShop,
+          icon: BsBoxSeam,
         },
         {
           label: 'Add Product',
           link:'add-product',
-          icon: MdOutlineAddBusiness,
+          icon: MdOutlineAddchart,
         },
         {
           label: 'Product Categories',
           link:'product-categories',
+          icon: TfiShoppingCartFull,
+        },
+        {
+          label: 'Add Category',
+          link:'add-category',
           icon: TfiShoppingCartFull,
         },
         {

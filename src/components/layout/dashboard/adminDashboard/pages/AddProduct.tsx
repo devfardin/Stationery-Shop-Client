@@ -1,9 +1,9 @@
-import React from 'react'
 import STForm from '../../../../form/STForm';
 import STInput from '../../../../form/STInput';
 import SubmitBtn from '../../../../form/SubmitBtn';
 import { FieldValues } from 'react-hook-form';
 import STTextAreat from '../../../../form/STTextAreat';
+import STInputFile from '../../../../form/STInputFile';
 
 const AddProduct = () => {
   const handleSubmit = (data: FieldValues) => {
@@ -21,16 +21,16 @@ const AddProduct = () => {
         <STInput name='name' label='Product Title' type='text' />
         <STTextAreat name='shortDescription' label='Product Short Description' 
         row={6}/>
-        <STTextAreat name='shortDescription' label='Product Short Description' 
-        row={6}/>
-        <STTextAreat name='shortDescription' label='Product Short Description' 
-        row={6}/>
-   
         <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
         <STInput name='price' label='Product Price' type='text'/>
         <STInput name='discount' label='Discount Price' type='text'/>
         </div>
-        <SubmitBtn type='submit' label='Submit' />
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
+        <STInput name='stocks' label='Product In Stocks' type='text'/>
+        <STInput name='sku' label='Product Sku' type='text'/>
+        </div>
+        <STInputFile name='featureImg' label='Feature Image'/>
+        <SubmitBtn type='submit' label='Create Product' />
       </STForm>
         </div>
       
