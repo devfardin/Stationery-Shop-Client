@@ -1,8 +1,8 @@
 import React from "react";
 import { RxDashboard } from "react-icons/rx";
 import { FaHome } from "react-icons/fa";
-import { BsBoxSeam, BsCartCheck, BsShop } from "react-icons/bs";
-import { MdOutlineAddBusiness, MdOutlineAddchart } from "react-icons/md";
+import { BsBoxSeam, BsCartCheck } from "react-icons/bs";
+import { MdOutlineAddchart } from "react-icons/md";
 import SidebarLink from "../component/SidebarLink";
 import { TfiShoppingCartFull } from "react-icons/tfi";
 
