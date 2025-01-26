@@ -19,7 +19,13 @@ const AddProduct = () => {
         <div className="mt-4">
         <STForm onSubmit={handleSubmit}>
         <STInput name='name' label='Product Title' type='text' />
-        <STTextAreat name='shortDescription' label='Product Short Description' row={10}/>
+        <STTextAreat name='shortDescription' label='Product Short Description' 
+        row={6}/>
+        <STTextAreat name='shortDescription' label='Product Short Description' 
+        row={6}/>
+        <STTextAreat name='shortDescription' label='Product Short Description' 
+        row={6}/>
+   
         <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
         <STInput name='price' label='Product Price' type='text'/>
         <STInput name='discount' label='Discount Price' type='text'/>

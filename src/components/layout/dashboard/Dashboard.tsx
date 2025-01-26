@@ -24,7 +24,7 @@ const Dashboard = () => {
 
       {/* Start Header Area */}
       <div className="pr-5 flex-1">
-        <div className=" flex flex-col  sm:ml-0  ml-3  h-screen ">
+        <div className=" flex flex-col  sm:ml-0  ml-3  h-screen overflow-y-scroll">
           <div>
             <Header isOpen={isOpen} setIsOpen={setIsOpen} />
           </div>
