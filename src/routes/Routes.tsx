@@ -9,6 +9,11 @@ import Login from "../pages/authentication/Login";
 import Registration from "../pages/authentication/Registration";
 import { dashboardRoutes } from "./DashboardRoutes";
 import Dashboard from "../components/layout/dashboard/Dashboard";
+import ProtectedRoute from "../components/layout/dashboard/ProtectedRoute";
+import AllProducts from "../components/layout/dashboard/adminDashboard/pages/AllProducts";
+import AddProduct from "../components/layout/dashboard/adminDashboard/pages/AddProduct";
+import AllCategores from "../components/layout/dashboard/adminDashboard/pages/AllCategores";
+import Orders from "../components/layout/dashboard/adminDashboard/pages/Orders";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -45,7 +50,25 @@ const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <Dashboard/>,
+        element: <ProtectedRoute> <Dashboard/> </ProtectedRoute>,
+        children: [
+            {
+                path: 'products',
+                element: <AllProducts/>
+            },
+            {
+                path: 'add-product',
+                element: <AddProduct/>
+            },
+            {
+                path: 'product-categories',
+                element: <AllCategores/>
+            },
+            {
+                path: 'orders',
+                element: <Orders/>
+            },
+        ]
     }
 ]);
 export default router

@@ -8,9 +8,11 @@ import { setUser, TUser } from '../../redux/features/auth/authSlice'
 import { toast } from 'sonner'
 import { useLoginMutation } from '../../redux/features/auth/authApi'
 import { verifyToken } from '../../utils/verifyToken'
+import { useNavigate } from 'react-router'
 const Login = () => {
   const dispatch = useAppDispatch()
   const [login]= useLoginMutation();
+  const nagivete = useNavigate();
 
   const onSubmit = async (data: FieldValues) => {
       // Showing message in toast
@@ -20,6 +22,7 @@ const Login = () => {
         const user = verifyToken(res.data.accessToken) as TUser;
         dispatch(setUser({ user: user, token: res.data.accessToken }))
         toast.success('Welcome back! You have logged in successfully.', {id: toastId, duration: 1000});
+        nagivete('/dashboard')
       } catch (error) {
         const err = error as { data: { message: string } };
         toast.error(`${err.data.message}`, {id: toastId, duration: 1000})
