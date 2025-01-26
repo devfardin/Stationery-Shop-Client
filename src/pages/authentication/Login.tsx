@@ -14,12 +14,12 @@ const Login = () => {
 
   const onSubmit = async (data: FieldValues) => {
       // Showing message in toast
-     const toastId = toast.loading('Loggin in');
+     const toastId = toast.loading('Logging you in, please wait...');
       try {
         const res = await login(data).unwrap();
         const user = verifyToken(res.data.accessToken) as TUser;
         dispatch(setUser({ user: user, token: res.data.accessToken }))
-        toast.success('Logged in', {id: toastId, duration: 1000});
+        toast.success('Welcome back! You have logged in successfully.', {id: toastId, duration: 1000});
       } catch (error) {
         const err = error as { data: { message: string } };
         toast.error(`${err.data.message}`, {id: toastId, duration: 1000})
