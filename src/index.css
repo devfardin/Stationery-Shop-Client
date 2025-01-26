@@ -10,6 +10,10 @@
     --color-black: #333333;
     --color-white: #ffffff;
     --color-text: #5A5A5A;
+    --color-dashPrimary: #757FEF;
+    --color-dashHoverBg: #F5F5F9;
+    --color-dashColor: #260944;
+    --color-dashBorder: #ededed;
   }
 
 body{

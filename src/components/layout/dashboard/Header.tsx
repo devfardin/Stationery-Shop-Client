@@ -1,29 +1,26 @@
 import { FiMenu, FiUser } from "react-icons/fi";
 import { SlCalender } from "react-icons/sl";
 import { Menu } from "@headlessui/react";
-import { Link, useNavigate } from "react-router";
+import { Link } from "react-router";
 import { IoSettingsOutline } from "react-icons/io5";
 import { PiSignOut } from "react-icons/pi";
 import { IoIosArrowDown } from "react-icons/io";
 import adminAvather from "../../../assets/images/admin.jpg";
 import { toast } from "sonner";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { logOut, selectCurrentUser } from "../../../redux/features/auth/authSlice";
+import { useAppDispatch } from "../../../redux/hooks";
+import { logOut } from "../../../redux/features/auth/authSlice";
+import React from "react";
 
-type TSideBar = {
-    isOpen: boolean,
-    setIsOpen: boolean,
-}
-
-const Header = ({ isOpen, setIsOpen }:TSideBar) => {
+type SidebarProps = {
+    isOpen: boolean; 
+    setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  };
+const Header: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
   const date = new Date();
   const year = date.getFullYear();
   const month = date.toLocaleDateString("default", { month: "long" });
   const day = date.getDate();
-  const navitage = useNavigate();
  const dispatch = useAppDispatch()
-
-const user = useAppSelector(selectCurrentUser);
 
   const handleLogout = () => {
     dispatch(logOut());
@@ -32,7 +29,7 @@ const user = useAppSelector(selectCurrentUser);
 
   return (
     // Header wrpper Start
-    <div className="bg-white flex-1 transition-all duration-500 rounded-lg mb-8 px-5 py-2 !w-full">
+    <div className="bg-white flex-1 transition-all duration-150 rounded-lg mb-8 px-5 py-2 !w-full mt-2">
       {/* header innder container star */}
       <div className="flex justify-between items-center gap-5 ">
         {/* Left start */}
