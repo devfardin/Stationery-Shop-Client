@@ -64,7 +64,7 @@ const Contact = () => {
                 <STInput name='fulName' label='Full Name' type='text'/>
                 <STInput name='email' label='Email Address' type='email'/>
                 <STInput name='subject' label='Subject' type='text'/>
-                <STTextAreat name='message' label='message' placeholder='Write your message here'/>
+                <STTextAreat name='message' label='message' placeholder='Write your message here' row={5}/>
                 <SubmitBtn type='submit' label='Send Message' fullWidth={true}/>
             </STForm>
           </div>
