@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { BaseQueryApi } from "@reduxjs/toolkit/query";
 import React from "react";
 export type TError = {
@@ -31,3 +32,7 @@ export type TQueryParam = {
     name: string,
     value: boolean | React.Key,
 }
+export type TMenuItemType = {
+    title: string;
+    link: string;
+  };

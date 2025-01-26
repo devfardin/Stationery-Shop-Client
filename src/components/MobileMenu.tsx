@@ -1,35 +1,32 @@
+import { MenuItem, MenuItems } from '@headlessui/react';
 import { Link } from 'react-router'
 
-type TMenuItems = {
-    title: string,
-    link: string,
+type MenuItemType = {
+  menuItems: {
+    title: string;
+    link: string;
+  }[];
 };
-type TMobileMenuItems = {
-    isOpenMenu: boolean;
-    menuItems: TMenuItems[]
-}
-const MobileMenu = ({ isOpenMenu, menuItems }: TMobileMenuItems) => {
+
+const MobileMenu = ({ menuItems }: MenuItemType) => {
   return (
-    <div>
+    <MenuItems anchor="bottom" className="w-full bg-[#F4F8FB] p-1  text-white mt-5 py-7 px-5 lg:hidden 
+     origin-top-right transition duration-100 ease-out [--anchor-gap:var(--spacing-1)] focus:outline-none data-[closed]:scale-95 data-[closed]:opacity-0">
       {
-        <div
-          className={` w-full ${isOpenMenu ? 'top-20' : '-top-[410px]'} z-10 bg-[#F4F8FB]
-             transition-all left-0 duration-500 ease-in py-7 px-5  absolute lg:hidden`}>
-          <ul className='flex flex-col gap-4 justify-center'>
-            {
-              menuItems.map((items, index) => <Link to={items.link} key={index}
-                className='text-lg font-normal text-title hover:text-primary'>
-                {items.title}
-              </Link>)
-            }
-          </ul>
-
-          <Link to='/dashboard' className='py-2.5 block mt-3 w-full md:w-auto  md:px-10 lg:py-3 lg:px-12 outline-none border-primary border-2 text-base font-medium text-heading hover:text-white bg-no hover:bg-primary hover:border-primary  duration-300 transition-all text-center'
-          >Account</Link>
-        </div>
+        menuItems.map((item) => <MenuItem key={item.link}>
+          <Link to={item.link} key={item.link}
+            className='text-lg font-normal block mt-4 text-title hover:text-primary text-black'>
+            {item.title}
+          </Link>
+        </MenuItem>
+        )
       }
-
-    </div>
+      <MenuItem>
+        <Link to='/dashboard' className='py-2.5 block mt-3 w-full md:w-auto  md:px-10 lg:py-3 lg:px-12 outline-none border-primary border-2 text-base font-medium text-heading hover:text-white bg-no hover:bg-primary hover:border-primary  duration-300 transition-all text-center text-primary'>
+          Account
+        </Link>
+      </MenuItem>
+    </MenuItems>
   )
 }
 
