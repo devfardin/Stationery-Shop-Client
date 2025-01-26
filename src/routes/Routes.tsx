@@ -7,6 +7,8 @@ import Blog from "../pages/blog/Blog";
 import Contact from "../pages/contact/Contact";
 import Login from "../pages/authentication/Login";
 import Registration from "../pages/authentication/Registration";
+import { dashboardRoutes } from "./DashboardRoutes";
+import Dashboard from "../components/layout/dashboard/Dashboard";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -39,8 +41,11 @@ const router = createBrowserRouter([
                 path: '/register',
                 element: <Registration/>
             },
-        ]
-
+        ],
+    },
+    {
+        path: '/dashboard',
+        element: <Dashboard/>,
     }
 ]);
 export default router
