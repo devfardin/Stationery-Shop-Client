@@ -6,12 +6,12 @@ import Sidebar from "./sidebar/Sidebar";
 
 
 const Dashboard = () => {
-  
+
   const [isOpen, setIsOpen] = useState(true);
   return (
-    <div className=" gap-0 md:gap-5 flex bg-[#F5F7FA] overflow-hidden">
+    <div className={`gap-0 md:gap-5 ${isOpen ? 'lg:gap-9' : 'lg:gap-5'}  flex bg-[#F5F7FA] overflow-hidden`}>
       {/* Start Sidebar Area */}
-     
+
       <div>
         <div
           className={`${isOpen ? "w-0 md:w-[260px]" : "w-[260px] md:w-20"
@@ -23,19 +23,21 @@ const Dashboard = () => {
       {/* End Side bar Area */}
 
       {/* Start Header Area */}
-      <div className="flex-1 flex flex-col  sm:ml-0  ml-3 mr-5 h-screen overflow-y-scroll">
-        <div>
-          <Header isOpen={isOpen} setIsOpen={setIsOpen} />
-        </div>
 
-        <div>
-          <Outlet />
-        </div>
+      <div className="pr-5 flex-1">
+        <div className=" flex flex-col  sm:ml-0  ml-3  h-screen ">
+          <div>
+            <Header isOpen={isOpen} setIsOpen={setIsOpen} />
+          </div>
 
-        <div className="mt-auto mb-2">
-          <Footer />
-        </div>
+          <div>
+            <Outlet />
+          </div>
 
+          <div className="mt-auto mb-2">
+            <Footer />
+          </div>
+        </div>
       </div>
       {/* End Header Area */}
     </div>

@@ -19,7 +19,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
     toast.success('Logout success')
   }
   return (
-    <div className={`${isOpen ? 'fixed top-0' : 'fixed shadow-md border-r top-0'} bg-white overflow-hidden top-0`}>
+    <div className={`${isOpen ? 'fixed top-0' : 'fixed shadow-md border-0 top-0'} bg-white overflow-hidden top-0`}>
     <div className="flex flex-col overflow-y-scroll  gap-5  h-screen">
       {/* Side bar Logo and title start */}
       <div

@@ -18,7 +18,7 @@ const SidebarLink = ({ to, label, icon: Icon, isOpen }: SidebarLinkProps) => {
         end
         to={to}
         className={({ isActive }) => ` ${
-          isOpen ? "justify-start" : "md:justify-center"
+          isOpen ? "justify-start" : "!justify-center md:justify-center"
         } ${
           isActive
             ? "bg-dashPrimary hover:bg-dashPrimary hover:text-white text-white"
