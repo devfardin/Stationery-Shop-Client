@@ -17,8 +17,8 @@ const Registration = () => {
         navigate('/login');
       }
       if(result?.error) {
-        const errorMessage = (result?.error as TError).data?.message;
-         toast.error(errorMessage, {id: toastId})
+        const errorMessage = (result?.error as TError).data;
+         toast.error(errorMessage.errorSources[0]?.message, {id: toastId})
       } else {
         const success = result.data.message;
         toast.success(success, {id: toastId})

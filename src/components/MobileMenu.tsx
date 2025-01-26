@@ -24,9 +24,8 @@ const MobileMenu = ({ isOpenMenu, menuItems }: TMobileMenuItems) => {
             }
           </ul>
 
-          <button className='py-2.5 mt-3 w-full md:w-auto  md:px-10 lg:py-3 lg:px-12 outline-none border-primary border-2 text-base font-medium text-heading hover:text-white bg-no hover:bg-primary hover:border-primary  duration-300 transition-all text-center'
-          // onClick={onclick} 
-          >Account</button>
+          <Link to='/dashboard' className='py-2.5 block mt-3 w-full md:w-auto  md:px-10 lg:py-3 lg:px-12 outline-none border-primary border-2 text-base font-medium text-heading hover:text-white bg-no hover:bg-primary hover:border-primary  duration-300 transition-all text-center'
+          >Account</Link>
         </div>
       }
 

@@ -2,6 +2,7 @@ import { BaseQueryApi } from "@reduxjs/toolkit/query";
 import React from "react";
 export type TError = {
     data: {
+        errorSources: any;
         message: string,
         success: boolean,
         stack: string,
