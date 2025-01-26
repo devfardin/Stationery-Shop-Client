@@ -7,8 +7,8 @@ import { PiSignOut } from "react-icons/pi";
 import { IoIosArrowDown } from "react-icons/io";
 import adminAvather from "../../../assets/images/admin.jpg";
 import { toast } from "sonner";
-import { useAppDispatch } from "../../../redux/hooks";
-import { logOut } from "../../../redux/features/auth/authSlice";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { logOut, selectCurrentToken, selectCurrentUser } from "../../../redux/features/auth/authSlice";
 import React from "react";
 
 type SidebarProps = {
@@ -21,6 +21,12 @@ const Header: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
   const month = date.toLocaleDateString("default", { month: "long" });
   const day = date.getDate();
  const dispatch = useAppDispatch()
+ const user = useAppSelector(selectCurrentUser)
+ const token = useAppSelector(selectCurrentToken);
+ console.log(token);
+ 
+
+ 
 
   const handleLogout = () => {
     dispatch(logOut());
@@ -61,9 +67,9 @@ const Header: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
                       />
                       <div className="hidden sm:flex flex-col justify-center">
                         <span className="text-base lg:text-lg font-normal text-primary text-center">
-                          customer
+                          {user?.role}
                         </span>
-                        <h2 className="flex items-center gap-2 text-base lg:text-lg font-semibold">
+                        <h2 className="flex items-center justify-between gap-2 text-base lg:text-lg font-semibold">
                           name <IoIosArrowDown />
                         </h2>
                       </div>

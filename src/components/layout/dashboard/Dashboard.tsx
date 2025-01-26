@@ -23,7 +23,6 @@ const Dashboard = () => {
       {/* End Side bar Area */}
 
       {/* Start Header Area */}
-
       <div className="pr-5 flex-1">
         <div className=" flex flex-col  sm:ml-0  ml-3  h-screen ">
           <div>
@@ -37,6 +36,7 @@ const Dashboard = () => {
           <div className="mt-auto mb-2">
             <Footer />
           </div>
+          
         </div>
       </div>
       {/* End Header Area */}
