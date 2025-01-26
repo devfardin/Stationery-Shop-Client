@@ -3,12 +3,28 @@ import STForm from '../../components/form/STForm'
 import { FieldValues } from 'react-hook-form'
 import STInput from '../../components/form/STInput'
 import SubmitBtn from '../../components/form/SubmitBtn'
+import { useAppDispatch } from '../../redux/hooks'
+import { setUser, TUser } from '../../redux/features/auth/authSlice'
+import { toast } from 'sonner'
+import { useLoginMutation } from '../../redux/features/auth/authApi'
+import { verifyToken } from '../../utils/verifyToken'
 const Login = () => {
-const dispatch = useAppDis
-    const onSubmit = async (data: FieldValues) => {
-        console.log(data);
-        
-    }
+  const dispatch = useAppDispatch()
+  const [login]= useLoginMutation();
+
+  const onSubmit = async (data: FieldValues) => {
+      // Showing message in toast
+     const toastId = toast.loading('Loggin in');
+      try {
+        const res = await login(data).unwrap();
+        const user = verifyToken(res.data.accessToken) as TUser;
+        dispatch(setUser({ user: user, token: res.data.accessToken }))
+        toast.success('Logged in', {id: toastId, duration: 1000});
+      } catch (error) {
+        const err = error as { data: { message: string } };
+        toast.error(`${err.data.message}`, {id: toastId, duration: 1000})
+      }
+  };
     const defaultValue= {
       email: 'john.doe@example.com',
       password: 'passeword123',

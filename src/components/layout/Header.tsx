@@ -7,8 +7,14 @@ import { RxCross1, RxHamburgerMenu } from 'react-icons/rx';
 import { useState } from 'react';
 import MobileMenu from '../MobileMenu';
 import LinkButton from '../share/LinkButton';
+import { useAppDispatch, useAppSelector } from '../../redux/hooks';
+import { logOut, selectCurrentUser } from '../../redux/features/auth/authSlice';
+import { toast } from 'sonner';
 
 const Header = () => {
+  const dispatch = useAppDispatch()
+
+    const user = useAppSelector(selectCurrentUser);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
     const menuItems = [
         {
@@ -32,7 +38,10 @@ const Header = () => {
           link: "/contact",
         },
       ];
-      const user = false;
+      const handleLogout = () => {
+        dispatch(logOut());
+        toast.success('Logout success')
+      }
   return (
     <div className='border-b border-neutral-200'>
       <Container>
@@ -120,8 +129,7 @@ const Header = () => {
                         <button
                         className="hover:bg-primary hover:text-white duration-200
                          py-3 px-5 text-start text-base w-full"
-                        // onClick={()=> logOut()}
-                        >
+                        onClick={handleLogout}>
                           Log Out
                         </button>
 
