@@ -65,14 +65,14 @@ const Header: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
                           {user?.role}
                         </span>
                         <h2 className="flex items-center justify-between gap-2 text-base lg:text-lg font-semibold">
-                          name <IoIosArrowDown />
+                          Rima Islam <IoIosArrowDown />
                         </h2>
                       </div>
                     </div>
                   </Menu.Button>
                 </div>
 
-                <Menu.Items className="absolute right-0 py-2 mt-2 w-44 origin-top-right divide-y divide-gray-100 rounded-sm bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
+                <Menu.Items className="absolute right-0 py-2 mt-2 w-44 origin-top-right divide-y divide-gray-100 rounded-sm bg-white shadow-lg ring-1 ring-black/5 focus:outline-none z-20">
                   <div className="px-1 py-1 ">
                     <Menu.Item>
                       <Link

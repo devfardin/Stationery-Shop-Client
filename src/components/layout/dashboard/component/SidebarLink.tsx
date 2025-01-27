@@ -11,10 +11,10 @@ type SidebarLinkProps = {
     icon: IconType; // The icon component, typically from libraries like react-icons
     isOpen: boolean; // Whether the sidebar is open or not
   };
-const SidebarLink = ({ to, label, icon: Icon, isOpen }: SidebarLinkProps) => {
+const SidebarLink = ({ to, label, icon: Icon, isOpen, }: SidebarLinkProps) => {
   return (
     <div>
-      <NavLink
+      <NavLink title={label}
         end
         to={to}
         className={({ isActive }) => ` ${
