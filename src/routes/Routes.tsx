@@ -19,6 +19,7 @@ import Contact from "../pages/contact/Contact";
 import Home from '../pages/home/Home';
 import Shop from "../pages/shop/Shop";
 import AdminProtected from "../components/layout/dashboard/proctedRoutes/AdminProtected";
+import CustomerProtected from "../components/layout/dashboard/proctedRoutes/CustomerProtected";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -85,15 +86,15 @@ const router = createBrowserRouter([
             // customer routes
             {
                 path: 'my-orders',
-                element: <MyOrders />
+                element: <CustomerProtected> <MyOrders /> </CustomerProtected>
             },
             {
                 path: 'my-cart',
-                element: <MyCart />
+                element: <CustomerProtected> <MyCart /> </CustomerProtected>
             },
             {
                 path: 'payment-history',
-                element: <PaymentHistory />
+                element: <CustomerProtected> <PaymentHistory /> </CustomerProtected>
             },
         ]
     }
