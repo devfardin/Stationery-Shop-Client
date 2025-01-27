@@ -147,8 +147,6 @@ const AllProducts = () => {
         columns={columns}
         dataSource={dataTable}
         onChange={onChange}
-        // virtual
-        // scroll={{ x: 1000 }}
       />
     </div>
   )
