@@ -1,12 +1,30 @@
-import { useCategoriesQuery } from '../../../../../redux/features/category/categoryApi'
+import { useCategoriesQuery, useCategoryDeleteMutation } from '../../../../../redux/features/category/categoryApi'
 import Loading from '../../../../share/Loading'
 import { Button, Image, Table, TableColumnsType, TableProps } from 'antd';
 import { AiOutlineDelete } from 'react-icons/ai'
 import { TCategoryTable } from '../../../../../types/categories'
 import { Menu } from '@headlessui/react'
-import { Link } from 'react-router'
+import { toast } from 'sonner';
+import { TError } from '../../../../../types/global';
 
 const AllCategores = () => {
+  const [deleteCategory] = useCategoryDeleteMutation()
+
+  const handlecategoryDelete = async(id: string) => {
+    const toastId = toast.loading('Deleting Category, please wait...');
+    const result = await deleteCategory(id);
+    if (result?.error) {
+      const errorMessage = (result?.error as TError).data?.message;
+      toast.error(errorMessage, { id: toastId })
+    } else {
+      const success = result.data.message;
+      toast.success(success, { id: toastId })
+      setTimeout(()=> {
+        location.reload();
+      }, toastId as number)
+    }
+  }
+  
     const action = [
       {
         label: 'Delete',
@@ -53,7 +71,7 @@ const AllCategores = () => {
       }
     },
     {
-      title: 'Product Name',
+      title: 'Category Name',
       dataIndex: 'name',
     },
    
@@ -84,11 +102,11 @@ const AllCategores = () => {
               <Menu.Items className="absolute left-0 py-2 mt-2 w-24 origin-top-right divide-y divide-gray-100 rounded-sm bg-white shadow-lg ring-1 ring-black/5 focus:outline-none z-20">
                 <div className="px-1 py-1 ">
                   {
-                    action.map(({ label, link, icon: Icon }) => <Menu.Item>
-                      <Link to={`/dashboard/${link}/${category.key}`} className="text-base font-normal flex w-full gap-2 items-center rounded-md px-2 py-1 text-dashPrimary hover:text-primary pointer" >
+                    action.map(({ label, icon: Icon }) => <Menu.Item>
+                      <button onClick={ ()=> handlecategoryDelete(category.key) } className="text-base font-normal flex w-full gap-2 items-center rounded-md px-2 py-1 text-dashPrimary hover:text-primary pointer" >
                         <Icon />
                         {label}
-                      </Link>
+                      </button>
                     </Menu.Item>)
                   }
                 </div>
