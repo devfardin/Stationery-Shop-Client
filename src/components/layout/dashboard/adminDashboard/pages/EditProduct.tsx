@@ -7,19 +7,19 @@ import STInputFile from '../../../../form/STInputFile';
 import STSelect from '../../../../form/STSelect';
 import { useCategoriesQuery } from '../../../../../redux/features/category/categoryApi';
 import { TCategoryOption, TError, TOptionType } from '../../../../../types/global';
-import { useAppSelector } from '../../../../../redux/hooks';
-import { selectCurrentUser } from '../../../../../redux/features/auth/authSlice';
 import { toast } from 'sonner';
 import { useParams } from 'react-router';
-import { useGetSingleProductQuery } from '../../../../../redux/features/product/productApi';
+import { useGetSingleProductQuery, useUpdateProductMutation } from '../../../../../redux/features/product/productApi';
 import Loading from '../../../../share/Loading';
 import { Image } from 'antd';
 
 const EditProduct = () => {
   const { data: categories, isLoading, } = useCategoriesQuery(undefined);
+  const [updatedProduct] = useUpdateProductMutation();
   const { productId } = useParams();
-  const { data: singleProduct, isLoading: productLoading, } = useGetSingleProductQuery(productId)
-
+  const { 
+    data: singleProduct, 
+    isLoading: productLoading, } = useGetSingleProductQuery(productId)
 
   const defaultValu = {
     title: singleProduct?.data?.title,
@@ -32,10 +32,10 @@ const EditProduct = () => {
     brand: singleProduct?.data?.brand,
     feature: singleProduct?.data?.feature,
   }
-  console.log(singleProduct);
 
-  const handleSubmit = (data: FieldValues) => {
-    const updatedProduct = {
+  const handleSubmit = async (data: FieldValues) => {
+    const toastId = toast.loading('Updating product, please wait...');
+    const updated = {
       title: data.title,
       description: data.description,
       price: data.price,
@@ -45,7 +45,20 @@ const EditProduct = () => {
       category: data.category,
       brand: data.brand,
       feature: data.feature,
+      productId: productId,
     }
+    const result = await updatedProduct(updated)
+    if (result?.error) {
+      const errorMessage = (result?.error as TError).data?.message;
+      toast.error(errorMessage, { id: toastId })
+    } else {
+      const success = result.data.message;
+      toast.success(success, { id: toastId })
+      setTimeout(()=> {
+        location.reload();
+      }, toastId as number)
+    }
+    
   }
   // create categories options
   const categoriesOptions: TCategoryOption[] = categories?.data?.map(
@@ -90,7 +103,7 @@ const EditProduct = () => {
               src={singleProduct?.data?.feature}
               placeholder={productLoading} />
           </div>
-          <SubmitBtn type='submit' label='Create Product' />
+          <SubmitBtn type='submit' label='Update Product' />
         </STForm>
       </div>
     </div>

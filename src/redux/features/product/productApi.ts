@@ -21,6 +21,13 @@ const productManagementApi = baseApi.injectEndpoints({
                 method: 'GET',
             })
         }),
+        updateProduct: builder.mutation({
+            query: (data) => ({
+                    url: `/products/${data.productId}`,
+                    method: 'PUT',
+                    body: data,
+            })
+        }),
     })
 })
-export const { useAddProductMutation, useGetProductsQuery, useGetSingleProductQuery } = productManagementApi;
+export const { useAddProductMutation, useGetProductsQuery, useGetSingleProductQuery, useUpdateProductMutation } = productManagementApi;
