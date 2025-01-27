@@ -6,9 +6,12 @@ import SubmitBtn from '../../components/form/SubmitBtn'
 import { useRegistrationMutation } from '../../redux/features/user/userApi'
 import { TError } from '../../types/global'
 import { toast } from 'sonner'
-import { useNavigate } from 'react-router'
+import { Navigate, useNavigate } from 'react-router'
+import { useAppSelector } from '../../redux/hooks'
+import { selectCurrentToken } from '../../redux/features/auth/authSlice'
 const Registration = () => {
   const navigate = useNavigate();
+   const token = useAppSelector(selectCurrentToken)
   const [registration] = useRegistrationMutation();
     const onSubmit = async (data: FieldValues) => {
       const  toastId = toast.loading('Creating your account, please wait...')
@@ -24,6 +27,9 @@ const Registration = () => {
         toast.success(success, {id: toastId})
       }
         
+    }
+    if(token) {
+      return <Navigate to='/dashboard'/>;
     }
   return (
     <div className='mt-16 flex justify-center items-center'>

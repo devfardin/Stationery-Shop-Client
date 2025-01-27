@@ -1,7 +1,7 @@
 import React from "react";
 import { RxDashboard } from "react-icons/rx";
 import { FaHome } from "react-icons/fa";
-import { BsBoxSeam, BsCartCheck } from "react-icons/bs";
+import { BsBoxSeam, BsCartCheck, BsCartPlus } from "react-icons/bs";
 import { MdOutlineAddchart } from "react-icons/md";
 import SidebarLink from "../component/SidebarLink";
 import { TfiShoppingCartFull } from "react-icons/tfi";
@@ -39,7 +39,7 @@ const AdminMenuItems:React.FC<AdminMenuItemsProps> = ({ isOpen }) => {
         {
           label: 'Add Category',
           link:'add-category',
-          icon: TfiShoppingCartFull,
+          icon: BsCartPlus ,
         },
         {
           label: 'Orders',

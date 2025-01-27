@@ -3,16 +3,18 @@ import STForm from '../../components/form/STForm'
 import { FieldValues } from 'react-hook-form'
 import STInput from '../../components/form/STInput'
 import SubmitBtn from '../../components/form/SubmitBtn'
-import { useAppDispatch } from '../../redux/hooks'
-import { setUser, TUser } from '../../redux/features/auth/authSlice'
+import { useAppDispatch, useAppSelector } from '../../redux/hooks'
+import { selectCurrentToken, setUser, TUser } from '../../redux/features/auth/authSlice'
 import { toast } from 'sonner'
 import { useLoginMutation } from '../../redux/features/auth/authApi'
 import { verifyToken } from '../../utils/verifyToken'
 import { useNavigate } from 'react-router'
+import { Navigate } from 'react-router'
 const Login = () => {
   const dispatch = useAppDispatch()
   const [login]= useLoginMutation();
   const nagivete = useNavigate();
+  const token = useAppSelector(selectCurrentToken)
 
   const onSubmit = async (data: FieldValues) => {
       // Showing message in toast
@@ -31,6 +33,10 @@ const Login = () => {
     const defaultValue= {
       email: 'john.doe@example.com',
       password: 'passeword123',
+    }
+    // if have a token don't view login page it will go dashboard
+    if(token) {
+      return <Navigate to='/dashboard'/>;
     }
   return (
     <div className='mt-16 flex justify-center items-center'>

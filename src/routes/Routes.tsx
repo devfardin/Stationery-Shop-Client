@@ -7,7 +7,6 @@ import Blog from "../pages/blog/Blog";
 import Contact from "../pages/contact/Contact";
 import Login from "../pages/authentication/Login";
 import Registration from "../pages/authentication/Registration";
-import { dashboardRoutes } from "./DashboardRoutes";
 import Dashboard from "../components/layout/dashboard/Dashboard";
 import ProtectedRoute from "../components/layout/dashboard/ProtectedRoute";
 import AllProducts from "../components/layout/dashboard/adminDashboard/pages/AllProducts";
