@@ -31,8 +31,8 @@ const Login = () => {
       }
   };
     const defaultValue= {
-      email: 'john.doe@example.com',
-      password: 'passeword123',
+      email: 'fardin@gmail.com',
+      password: 'password123',
     }
     // if have a token don't view login page it will go dashboard
     if(token) {

@@ -7,6 +7,15 @@ export type TUser = {
     iat: number,
     exp: number,
 };
+export type TUserInfo = {
+    firstName: string,
+  lastName: string,
+  email: string,
+  password: string,
+  role: 'admin' | 'customer',
+  status: 'active' | 'disabled',
+  isDeleted: boolean,
+}
 type TAuthState = {
     user: null | TUser;
     token: null | string;

@@ -7,10 +7,10 @@ import { PiSignOut } from "react-icons/pi";
 import { IoIosArrowDown } from "react-icons/io";
 import adminAvather from "../../../assets/images/admin.jpg";
 import { toast } from "sonner";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { logOut, selectCurrentUser } from "../../../redux/features/auth/authSlice";
+import { useAppDispatch } from "../../../redux/hooks";
+import { logOut } from "../../../redux/features/auth/authSlice";
 import React from "react";
-
+import { useFullUser } from "../../../redux/features/auth/userFullInfo";
 type SidebarProps = {
     isOpen: boolean; 
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -21,13 +21,12 @@ const Header: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
   const month = date.toLocaleDateString("default", { month: "long" });
   const day = date.getDate();
  const dispatch = useAppDispatch()
- const user = useAppSelector(selectCurrentUser);
-
+ const { userInfo } = useFullUser()
+ 
   const handleLogout = () => {
     dispatch(logOut());
     toast.success('Logout success')
   }
-
   return (
     // Header wrpper Start
     <div className="bg-white flex-1 transition-all duration-150 rounded-lg mb-8 px-5 py-2 !w-full mt-2">
@@ -62,10 +61,10 @@ const Header: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
                       />
                       <div className="hidden sm:flex flex-col justify-start">
                         <span className="text-base lg:text-lg font-normal text-dashPrimary text-left">
-                          {user?.role}
+                          {userInfo?.data?.role}
                         </span>
                         <h2 className="flex items-center justify-between gap-2 text-base lg:text-lg font-semibold">
-                          Rima Islam <IoIosArrowDown />
+                          {userInfo?.data?.firstName} <IoIosArrowDown />
                         </h2>
                       </div>
                     </div>

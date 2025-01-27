@@ -4,10 +4,9 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Sidebar from "./sidebar/Sidebar";
 
-
 const Dashboard = () => {
-
   const [isOpen, setIsOpen] = useState(true);
+
   return (
     <div className={`gap-0 md:gap-5 ${isOpen ? 'lg:gap-9' : 'lg:gap-5'}  flex bg-[#F5F7FA] overflow-hidden`}>
       {/* Start Sidebar Area */}
