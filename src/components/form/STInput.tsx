@@ -2,8 +2,8 @@ import { Form, Input } from 'antd'
 import { Controller } from 'react-hook-form'
 type TInputProps = {
     name: string;
-    label: string;
-    type: string;
+    label?: string;
+    type?: string;
     placeholder?:string;
 }
 const STInput = ({name, label, type, placeholder}: TInputProps) => {
@@ -28,7 +28,7 @@ const STInput = ({name, label, type, placeholder}: TInputProps) => {
        <Controller
        name={name}
        render={({field}) => <Form.Item rules={[{required: true}]}>
-        <label  className="text-base font-medium mb-1.5 block text-pera" htmlFor={name}>{label}</label>
+       <label  className="text-base font-medium mb-1.5 block text-pera" htmlFor={name}>{label}</label>
          <Input {...field} type={type} id={name} placeholder={placeholder} style={inputStyle} size='large'
          onFocus={(e) => (e.target.style.borderColor = focusStyle.borderColor)}
          onBlur={(e) => (e.target.style.borderColor = "#B1B5C3")}
