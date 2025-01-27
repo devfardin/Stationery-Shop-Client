@@ -1,9 +1,11 @@
-import React from 'react'
+import PageHeader from '../../components/share/PageHeader'
+import OurInfo from './OurInfo'
 
 const About = () => {
   return (
     <div>
-      <h1>About Us</h1>
+      <PageHeader page='About Us'/>
+      <OurInfo/>
     </div>
   )
 }

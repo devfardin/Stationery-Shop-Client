@@ -1,12 +1,13 @@
 import { toast } from "sonner";
-import { logOut } from "../../../../redux/features/auth/authSlice";
-import { useAppDispatch } from "../../../../redux/hooks";
+import { logOut, selectCurrentUser } from "../../../../redux/features/auth/authSlice";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { Link } from "react-router";
 import adminAvather from "../../../../assets/images/admin.jpg";
 import dashboardLogo from "../../../../assets/images/dashboard-logo.png";
 import websiteName from '../../../../assets/images/website-name.png'
 import { RxCross2 } from "react-icons/rx";
 import AdminMenuItems from "../adminDashboard/AdminMenuItems";
+import CustomerMenuItems from "../customerDashboard/CustomerMenuItems";
 
 type SidebarProps = {
   isOpen: boolean; 
@@ -14,10 +15,12 @@ type SidebarProps = {
 };
 const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
   const dispatch = useAppDispatch()
+  const user = useAppSelector(selectCurrentUser)
   const handleLogout = () => {
     dispatch(logOut());
     toast.success('Logout success')
   }
+
   return (
     <div className={`${isOpen ? 'fixed top-0' : 'fixed shadow-md border-0 top-0'} bg-white overflow-hidden top-0`}>
     <div className="flex flex-col overflow-y-scroll  gap-5  h-screen">
@@ -51,23 +54,10 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
           ></RxCross2>
         </div>
       </div>
-      {/* Sidebar logo and Title end */}
-
-      {/* Sidebar Menu Items Start */}
       <div className="mx-2">
-        <AdminMenuItems isOpen={isOpen}/>
-
-        {/* {
-          userRole === 'customer' && <CustomerMenuItems isOpen={isOpen}/>
-        }
-
-        { userRole === "admin" &&
-          <AdminMenuItems isOpen={isOpen} />
-         } */}
+        { user?.role === 'customer' && <CustomerMenuItems isOpen={isOpen}/> }
+        { user?.role === "admin" && <AdminMenuItems isOpen={isOpen} />  }
       </div>
-      {/* Sidebar Menu Items Start */}
-
-      {/* Sidebar Footer Start */}
       <Link
         to={"profile"}
         className={`${

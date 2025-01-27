@@ -12,17 +12,17 @@ import { logOut } from "../../../redux/features/auth/authSlice";
 import React from "react";
 import { useFullUser } from "../../../redux/features/auth/userFullInfo";
 type SidebarProps = {
-    isOpen: boolean; 
-    setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  };
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
 const Header: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
   const date = new Date();
   const year = date.getFullYear();
   const month = date.toLocaleDateString("default", { month: "long" });
   const day = date.getDate();
- const dispatch = useAppDispatch()
- const { userInfo } = useFullUser()
- 
+  const dispatch = useAppDispatch()
+  const { userInfo } = useFullUser()
+
   const handleLogout = () => {
     dispatch(logOut());
     toast.success('Logout success')
@@ -34,8 +34,8 @@ const Header: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
       <div className="flex justify-between items-center gap-5 ">
         {/* Left start */}
         <div className="cursor-pointer"
-        onClick={() => setIsOpen(!isOpen)}
-            >
+          onClick={() => setIsOpen(!isOpen)}
+        >
           <FiMenu className="text-2xl hover:text-dashPrimary duration-300" />
         </div>
 
@@ -61,7 +61,10 @@ const Header: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
                       />
                       <div className="hidden sm:flex flex-col justify-start">
                         <span className="text-base lg:text-lg font-normal text-dashPrimary text-left">
-                          {userInfo?.data?.role}
+                          {userInfo?.data?.role
+                            ? userInfo.data.role.charAt(0).toUpperCase() + userInfo.data.role.slice(1)
+                            : "Null Role"}
+
                         </span>
                         <h2 className="flex items-center justify-between gap-2 text-base lg:text-lg font-semibold">
                           {userInfo?.data?.firstName} <IoIosArrowDown />
