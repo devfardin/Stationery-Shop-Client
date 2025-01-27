@@ -29,7 +29,7 @@ const OurInfo = () => {
     ]
     return (
         <Container>
-            <div>
+            <div className='border-2 border-primary border-dashed px-8 py-10 lg:px-14 lg:py-20 mt-14 md:mt-20 grid grid-cols-2 lg:grid-cols-4 gap-4'>
                 {
                     counterItems.map((item, index) => <div key={index} className='flex justify-center flex-col items-center'>
                     <CountUp
