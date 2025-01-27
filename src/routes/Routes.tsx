@@ -20,6 +20,8 @@ import Home from '../pages/home/Home';
 import Shop from "../pages/shop/Shop";
 import AdminProtected from "../components/layout/dashboard/proctedRoutes/AdminProtected";
 import CustomerProtected from "../components/layout/dashboard/proctedRoutes/CustomerProtected";
+import CustomerDashboard from "../components/layout/dashboard/customerDashboard/pages/CustomerDashboard";
+import AdminDashboard from "../components/layout/dashboard/adminDashboard/pages/AdminDashboard";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -56,9 +58,13 @@ const router = createBrowserRouter([
         ],
     },
     {
-        path: '/dashboard',
+        path: '/admin/dashboard',
         element: <ProtectedRoute> <Dashboard /> </ProtectedRoute>,
         children: [
+            {
+                index: true,
+                element: <AdminProtected><AdminDashboard/></AdminProtected>
+            },
             {
                 path: 'products',
                 element: <AdminProtected> <AllProducts /> </AdminProtected>
@@ -84,6 +90,16 @@ const router = createBrowserRouter([
                 element: <AdminProtected> <Orders /> </AdminProtected>
             },
             // customer routes
+        ]
+    },
+    {
+        path: '/customer/dashboard',
+        element: <ProtectedRoute> <Dashboard/> </ProtectedRoute>,
+        children: [
+            {
+                index: true,
+                element: <CustomerProtected> <CustomerDashboard/> </CustomerProtected>
+            },
             {
                 path: 'my-orders',
                 element: <CustomerProtected> <MyOrders /> </CustomerProtected>
@@ -99,4 +115,4 @@ const router = createBrowserRouter([
         ]
     }
 ]);
-export default router
+export default router;
