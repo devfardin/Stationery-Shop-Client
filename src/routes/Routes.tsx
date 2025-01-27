@@ -14,6 +14,7 @@ import AddProduct from "../components/layout/dashboard/adminDashboard/pages/AddP
 import AllCategores from "../components/layout/dashboard/adminDashboard/pages/AllCategores";
 import Orders from "../components/layout/dashboard/adminDashboard/pages/Orders";
 import AddCategory from "../components/layout/dashboard/adminDashboard/pages/AddCategory";
+import EditProduct from "../components/layout/dashboard/adminDashboard/pages/EditProduct";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -61,13 +62,16 @@ const router = createBrowserRouter([
                 element: <AddProduct/>
             },
             {
-                path: 'product-categories',
+                path: 'all-categories',
                 element: <AllCategores/>
             },
             {
                 path: 'add-category',
-                element: <AddCategory
-                />
+                element: <AddCategory/>
+            },
+            {
+                path: 'edit-product/:productId',
+                element: <EditProduct/>
             },
             {
                 path: 'orders',

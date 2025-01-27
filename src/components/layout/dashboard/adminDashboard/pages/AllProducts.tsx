@@ -2,18 +2,18 @@ import { Button, Image, Table, TableColumnsType, TableProps } from "antd";
 import { useGetProductsQuery } from "../../../../../redux/features/product/productApi"
 import Loading from "../../../../share/Loading";
 import { Menu } from "@headlessui/react";
-import { Link } from "react-router";
 import { FiEdit } from "react-icons/fi";
-import { IoSettingsOutline } from "react-icons/io5";
 import { TDataTableItem } from "../../../../../types/product";
 import { AiOutlineDelete } from "react-icons/ai";
+import { Link } from "react-router";
 
 const AllProducts = () => {
   const { data: productData, isLoading, isFetching } = useGetProductsQuery(undefined);
+
   const action = [
     {
       label: 'Edit',
-      link: '/edit',
+      link: 'edit-product',
       icon: FiEdit,
     },
     {
@@ -113,11 +113,11 @@ const AllProducts = () => {
               <Menu.Items className="absolute left-0 py-2 mt-2 w-24 origin-top-right divide-y divide-gray-100 rounded-sm bg-white shadow-lg ring-1 ring-black/5 focus:outline-none z-20">
                 <div className="px-1 py-1 ">
                   {
-                    action.map(({ label, icon: Icon }) => <Menu.Item>
-                      <button className="text-base font-normal flex w-full gap-2 items-center rounded-md px-2 py-1 text-dashPrimary hover:text-primary pointer" >
+                    action.map(({ label, link, icon: Icon }) => <Menu.Item>
+                      <Link to={`/dashboard/${link}/${product.key}`} className="text-base font-normal flex w-full gap-2 items-center rounded-md px-2 py-1 text-dashPrimary hover:text-primary pointer" >
                         <Icon />
                         {label}
-                      </button>
+                      </Link>
                     </Menu.Item>)
                   }
                 </div>

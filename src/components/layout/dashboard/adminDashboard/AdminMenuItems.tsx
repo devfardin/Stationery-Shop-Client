@@ -32,8 +32,8 @@ const AdminMenuItems:React.FC<AdminMenuItemsProps> = ({ isOpen }) => {
           icon: MdOutlineAddchart,
         },
         {
-          label: 'Product Categories',
-          link:'product-categories',
+          label: 'All Categories',
+          link:'all-categories',
           icon: TfiShoppingCartFull,
         },
         {
