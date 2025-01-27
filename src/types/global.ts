@@ -36,3 +36,13 @@ export type TMenuItemType = {
     title: string;
     link: string;
   };
+
+  export type TCategoryOption = {
+    value: string; // Corresponds to item._id
+    label: string; // Corresponds to item.name
+    disabled: boolean; // Indicates if the option is disabled
+  };
+  export type TOptionType = {
+    _id: string; // The ID of the category
+    name: string; // The name of the category
+  };

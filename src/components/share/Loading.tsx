@@ -1,9 +1,10 @@
 import { PulseLoader } from "react-spinners"
-
-const Loading = () => {
+type TLoading = {
+  dash?: boolean,
+}
+const Loading = ({dash}: TLoading) => {
   return (
-    <PulseLoader margin={5} size={15}
-/>
+    <PulseLoader margin={5} size={15} color={ dash ? '#757FEF' : '#4ACDD5'}/>
   )
 }
 

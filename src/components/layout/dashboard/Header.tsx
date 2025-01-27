@@ -8,7 +8,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import adminAvather from "../../../assets/images/admin.jpg";
 import { toast } from "sonner";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { logOut, selectCurrentToken, selectCurrentUser } from "../../../redux/features/auth/authSlice";
+import { logOut, selectCurrentUser } from "../../../redux/features/auth/authSlice";
 import React from "react";
 
 type SidebarProps = {
@@ -21,12 +21,7 @@ const Header: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
   const month = date.toLocaleDateString("default", { month: "long" });
   const day = date.getDate();
  const dispatch = useAppDispatch()
- const user = useAppSelector(selectCurrentUser)
- const token = useAppSelector(selectCurrentToken);
- console.log(token);
- 
-
- 
+ const user = useAppSelector(selectCurrentUser);
 
   const handleLogout = () => {
     dispatch(logOut());
@@ -42,13 +37,13 @@ const Header: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
         <div className="cursor-pointer"
         onClick={() => setIsOpen(!isOpen)}
             >
-          <FiMenu className="text-2xl hover:text-primary duration-300" />
+          <FiMenu className="text-2xl hover:text-dashPrimary duration-300" />
         </div>
 
         {/* Right Start */}
         <div className="flex items-center gap-3 md:gap-5">
           <div className="hidden md:block">
-            <h2 className="flex items-center gap-2 border border-[#E2E8F0] py-2 px-3 lg:px-4 rounded-sm text-base lg:text-lg font-medium text-primary">
+            <h2 className="flex items-center gap-2 border border-[#E2E8F0] py-2 px-3 lg:px-4 rounded-sm text-base lg:text-lg font-medium text-dashPrimary">
               <SlCalender className="text-xl" />
               {` ${day} ${month} ${year}`}
             </h2>
@@ -65,8 +60,8 @@ const Header: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
                         src={adminAvather}
                         alt=""
                       />
-                      <div className="hidden sm:flex flex-col justify-center">
-                        <span className="text-base lg:text-lg font-normal text-primary text-center">
+                      <div className="hidden sm:flex flex-col justify-start">
+                        <span className="text-base lg:text-lg font-normal text-dashPrimary text-left">
                           {user?.role}
                         </span>
                         <h2 className="flex items-center justify-between gap-2 text-base lg:text-lg font-semibold">
@@ -77,12 +72,12 @@ const Header: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
                   </Menu.Button>
                 </div>
 
-                <Menu.Items className="absolute right-0 py-2 mt-4 w-44 origin-top-right divide-y divide-gray-100 rounded-sm bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
+                <Menu.Items className="absolute right-0 py-2 mt-2 w-44 origin-top-right divide-y divide-gray-100 rounded-sm bg-white shadow-lg ring-1 ring-black/5 focus:outline-none">
                   <div className="px-1 py-1 ">
                     <Menu.Item>
                       <Link
                         to="profile"
-                        className=" hover:bg-primary hover:text-white text-base font-normal flex w-full gap-1 items-center rounded-md px-2 py-1 text-primary"
+                        className=" hover:bg-dashPrimary hover:text-white text-base font-normal flex w-full gap-1 items-center rounded-md px-2 py-1 text-dashPrimary"
                       >
                         <FiUser></FiUser>
                         Profile
@@ -92,7 +87,7 @@ const Header: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
                     <Menu.Item>
                       <Link
                         to="/profile"
-                        className=" hover:bg-primary hover:text-white text-base font-normal flex w-full gap-1 items-center rounded-md px-2 py-1 text-primary"
+                        className=" hover:bg-dashPrimary hover:text-white text-base font-normal flex w-full gap-1 items-center rounded-md px-2 py-1 text-dashPrimary"
                       >
                         <IoSettingsOutline></IoSettingsOutline>
                         Setting
@@ -102,7 +97,7 @@ const Header: React.FC<SidebarProps> = ({ isOpen, setIsOpen }) => {
                     <Menu.Item>
                       <button
                         onClick={handleLogout}
-                        className=" hover:bg-primary hover:text-white text-base font-normal flex w-full gap-1 items-center rounded-md px-2 py-1 text-primary"
+                        className=" hover:bg-dashPrimary hover:text-white text-base font-normal flex w-full gap-1 items-center rounded-md px-2 py-1 text-dashPrimary"
                       >
                         <PiSignOut />
                         Logout

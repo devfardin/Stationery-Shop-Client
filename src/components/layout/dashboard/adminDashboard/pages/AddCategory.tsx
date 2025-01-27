@@ -10,22 +10,19 @@ import STInputFile from '../../../../form/STInputFile';
 import STTextAreat from '../../../../form/STTextAreat';
 import SubmitBtn from '../../../../form/SubmitBtn';
 
+
 const AddCategory = () => {
   const user = useAppSelector(selectCurrentUser);
-
-console.log(user);
-
 
   const [AddCategory] = useAddCategoryMutation();
   const handleSubmit = async (data: FieldValues) => {
     const toastId = toast.loading('Creating category, please wait...');
     const categoryData = {
-      userId: user?.userId,
+      author: user?.userId,
       name: data.name,
       description: data.description,
       feature: 'feature image path'
     };
-    console.log(categoryData);
 
     const result = await AddCategory(categoryData);
     if (result?.error) {
