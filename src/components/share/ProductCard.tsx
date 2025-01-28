@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { TProducts } from "../../types/product";
 import Container from "./Container";
 import ProductAction from "./ProductAction";
 import { Link } from "react-router";
-
 type Products = {
     products: any,
     startQuery?: number,
@@ -10,8 +10,6 @@ type Products = {
     isLoading?: boolean,
 }
 const ProductCard = ({ products, startQuery, endQuery, isLoading }: Products) => {
-  
-
   if(isLoading) {
     return <>Loading</>
   }
@@ -20,25 +18,25 @@ const ProductCard = ({ products, startQuery, endQuery, isLoading }: Products) =>
       <Container>
         <div>
             <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-              {products?.slice(startQuery, endQuery).map((product) => (
+              {products?.slice(startQuery, endQuery)?.map((product: TProducts) => (
                 <div key={product?._id} className="overflow-hidden group">
                   {/* Product feature image */}
                   <div className="relative  overflow-hidden bg-[#D9D9D9] rounded-lg">
                     <img
                       className="rounded-md group-hover:scale-125 group-hover:rotate-6 w-full transition-all duration-300"
-                      src={product.featureImg}
+                      src={product.feature}
                       alt="Feature image"
                     />
                     <ProductAction product={product} />
 
                     <span className="absolute top-3 right-3 py-1 px-3 xl:px-4 font-normal text-sm text-white  bg-primary">
-                      {product?.stock <= 0 ? "Stock Out" : "New Arival"}
+                      {product?.quantity <= 0 ? "Stock Out" : "New Arival"}
                     </span>
                   </div>
                   {/* Product Information */}
                   <div className="my-5">
-                    <Link to='/' className="text-base md:text-xl hover:text-primary truncate transition-all duration-300 text-heading font-medium ">
-                      {product.name}
+                    <Link to={`/single-product/${product?._id}`} className="text-base md:text-xl hover:text-primary truncate transition-all duration-300 text-heading font-medium ">
+                      {product.title}
                     </Link>
                     {/* Product prices */}
                     <div className="text-center flex items-center gap-3 mt-3">

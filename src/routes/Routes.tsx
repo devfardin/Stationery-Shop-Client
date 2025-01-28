@@ -22,6 +22,7 @@ import AdminProtected from "../components/layout/dashboard/proctedRoutes/AdminPr
 import CustomerProtected from "../components/layout/dashboard/proctedRoutes/CustomerProtected";
 import CustomerDashboard from "../components/layout/dashboard/customerDashboard/pages/CustomerDashboard";
 import AdminDashboard from "../components/layout/dashboard/adminDashboard/pages/AdminDashboard";
+import ProductSingle from "../pages/single/ProductSingle";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
             {
                 path: '/shop',
                 element: <Shop />
+            },
+            {
+                path: '/single-product/:productId',
+                element: <ProductSingle />
             },
             {
                 path: '/blog',

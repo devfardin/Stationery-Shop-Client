@@ -1,37 +1,27 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react'
 import { RxCross1, RxHamburgerMenu } from 'react-icons/rx'
-import MobileFilter from './MobileFilter'
+// import MobileFilter from './MobileFilter'
 import { LiaSearchSolid } from "react-icons/lia"
-import { Combobox, Transition } from '@headlessui/react'
 import { useGetProductsQuery } from '../../redux/features/product/productApi'
 import { useCategoriesQuery } from '../../redux/features/category/categoryApi'
 import Loading from '../../components/share/Loading'
+import { TCategory, TProducts } from '../../types/product'
 
-const Filter = ({ handelCategory, handleSearch }) => {
+type FilterProps = {
+    handelCategory: (category: string) => void;
+    handleSearch: (event: React.ChangeEvent<HTMLInputElement>) => void;
+};
+const Filter: React.FC<FilterProps> = ({ handelCategory, handleSearch }) => {
     const { data: products, isLoading } = useGetProductsQuery(undefined);
     const { data: categorys, isLoading: loading } = useCategoriesQuery(undefined);
+    const [menuOpen, setIsMenuOpen] = useState(false);
 
 
-
-    const [menuOpen, setIsMenuOpen] = useState(false)
-    const [query, setQuery] = useState('')
-    // const [selected, setSelected] = useState(products[1])
-
-
-
-    const filteredPeople =
-        query === ''
-            ? products
-            : products?.data?.filter((product) =>
-                product.name
-                    .toLowerCase()
-                    .replace(/\s+/g, '')
-                    .includes(query.toLowerCase().replace(/\s+/g, ''))
-            )
 
     if (isLoading && loading) {
         return <div className="h-screen flex justify-center items-center">
-            <Loading />
+          <Loading />
         </div>
     }
     return (
@@ -66,12 +56,13 @@ const Filter = ({ handelCategory, handleSearch }) => {
                         <div className='mt-4'>
                             <h2 onClick={() => handelCategory('')} className='text-base font-normal text-[#888888] mb-3 hover:text-primary duration-300 transition-all cursor-pointer hover:font-semibold flex items-center justify-between gap-5'>All Products <span>{products?.data?.length}</span></h2>
                             {
-                                categorys?.data?.map((category, index) => <div key={index} onClick={() => handelCategory(category.name)}>
+                                categorys?.data?.map((category: TCategory) => <div key={category?._id}
+                                    onClick={() => handelCategory(category.name)}>
                                     <div className='flex items-center justify-between gap-5 group'>
                                         <h2 className='text-base font-normal text-[#888888] mb-3 group-hover:text-primary duration-300 transition-all cursor-pointer group-hover:font-semibold'>{category.name}</h2>
                                         <h3 className='text-base font-normal text-pera group-hover:text-primary duration-300 transition-all group-hover:font-semibold cursor-pointer'>
                                             {
-                                                products?.data.filter((product) => product?.category?.name === category?.name).length
+                                                products?.data.filter((product: TProducts) => product?.category?.name === category?.name).length
                                             }
                                         </h3>
                                     </div>

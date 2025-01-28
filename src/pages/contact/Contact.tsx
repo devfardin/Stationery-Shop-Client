@@ -7,6 +7,7 @@ import STForm from '../../components/form/STForm';
 import STInput from '../../components/form/STInput';
 import SubmitBtn from '../../components/form/SubmitBtn';
 import STTextAreat from '../../components/form/STTextAreat';
+import PageHeader from '../../components/share/PageHeader';
 
 const Contact = () => {
   const contactInof = [
@@ -32,8 +33,9 @@ const Contact = () => {
       }
   return (
     <div className='mt-16'>
+      <PageHeader page={'Contact Us'}/>
       <Container>
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-5 justify-between'>
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-5 justify-between mt-10'>
           {/* Contact Right information */}
           <div>
             <div className='flex flex-col gap-3'>

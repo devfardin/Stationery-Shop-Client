@@ -6,29 +6,13 @@ import { useEffect, useState } from "react";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import Container from "../../components/share/Container";
 import SectionHeading from "../../components/share/SectionHeading";
+import { useGetProductsQuery } from "../../redux/features/product/productApi";
+import { useCategoriesQuery } from "../../redux/features/category/categoryApi";
+import { TCategory, TProducts } from "../../types/product";
 const Categories = () => {
-    const [categorys, setCategorys] = useState([]);
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(false);
-    useEffect(() => {
-        setLoading(true);
-        fetch("./category.json")
-            .then((res) => res.json())
-            .then((data) => {
-                setCategorys(data);
-                setLoading(false);
-            });
-    }, []);
+    const { data: products, isLoading } = useGetProductsQuery(undefined);
+    const { data: categorys, isLoading: loading } = useCategoriesQuery(undefined);
 
-    useEffect(() => {
-        setLoading(true);
-        fetch("./products.json")
-            .then((res) => res.json())
-            .then((data) => {
-                setProducts(data);
-                setLoading(false);
-            });
-    }, []);
 
     return (
         <div className="mt-20">
@@ -75,22 +59,20 @@ const Categories = () => {
                             }}
                             className="mySwiper"
                         >
-                            {categorys.map((category, index) => (
-                                <SwiperSlide key={index}>
+                            {categorys?.data?.map((category: TCategory) => (
+                                <SwiperSlide key={category._id}>
                                     <div className="">
-                                        <img src={category?.image} className="w-full rounded-xl" alt="" />
+                                        <img src={category?.feature} className="w-full rounded-xl" alt="" />
                                         <div className="flex flex-row items-center justify-between mt-3 px-2">
                                             <h2 className="text-lg font-normal text-heading">
-                                                {category?.category}
+                                                {category?.name}
                                             </h2>
 
                                             {/* Category items */}
                                             <h3 className="text-sm font-medium text-black opacity-70 before:w-12 before:h-0.5 before:bg-[#cccccc]">
-                                            <span className="before:absolute before:content-[''] before:h-[1px] before:bg-[#ccc] before:w-14 before:right-2 before:top-1/2 relative flex-1"></span>
+                                                <span className="before:absolute before:content-[''] before:h-[1px] before:bg-[#ccc] before:w-14 before:right-2 before:top-1/2 relative flex-1"></span>
                                                 {
-                                                    products.filter(
-                                                        (product) => product.category === category.category
-                                                    ).length
+                                                    products?.data.filter((product: TProducts) => product?.category?.name === category?.name).length
                                                 }
 
                                             </h3>

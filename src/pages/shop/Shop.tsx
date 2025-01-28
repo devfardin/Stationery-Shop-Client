@@ -2,19 +2,16 @@ import React, { useState } from 'react'
 import PageHeader from '../../components/share/PageHeader'
 import Container from '../../components/share/Container'
 import Filter from './Filter';
-import { useGetProductsQuery } from '../../redux/features/product/productApi';
 import Products from './Products';
 
 const Shop = () => {
-   const { data: productData, isLoading, isFetching } = useGetProductsQuery(undefined);
-  
    const [category, setCategory] = useState('')
    const [searchResult, setSearchResult] = useState('')
-   const handelCategory = (value) => {
+   const handelCategory = (value: string) => {
      setCategory(value)
      return
    }
-   const handleSearch = (e) => {
+   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
      setSearchResult(e.target.value.toLowerCase())
    }
 
@@ -27,8 +24,7 @@ const Shop = () => {
             <Filter handelCategory={handelCategory} handleSearch={handleSearch} />
           </div>
           <div className='col-span-9 lg:col-span-8'>
-           <Products category={category}  searchResult={searchResult}  
-            // selected={selected} 
+           <Products category={category}  searchResult={searchResult}
             /> 
           </div>
         </div>
