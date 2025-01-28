@@ -1,9 +1,10 @@
 import React from 'react'
+import PageHeader from '../../components/share/PageHeader'
 
 const Shop = () => {
   return (
     <div>
-      <h1>Shop page</h1>
+      <PageHeader page='Shop'/>
     </div>
   )
 }
