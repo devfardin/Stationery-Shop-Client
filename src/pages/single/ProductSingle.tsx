@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Link, useParams } from 'react-router'
 import { useGetSingleProductQuery } from '../../redux/features/product/productApi'
 import Loading from '../../components/share/Loading'
 import PageHeader from '../../components/share/PageHeader'
 import Container from '../../components/share/Container'
-import { AiOutlineRetweet } from 'react-icons/ai'
-import { IoHeartOutline } from 'react-icons/io5'
 import { toast } from 'sonner'
 import { FiMinus, FiPlus } from 'react-icons/fi'
 import SingleUserInfo from '../../components/share/SingleUserInfo'
@@ -46,27 +44,22 @@ const ProductSingle = () => {
             <div className="col-span-4">
               <h1 className="text-3xl font-medium text-heading mb-2">
                 {productData?.data?.title}
-                {/* <br />
-                {data?._id}
-                <br />
-                {user?.email} */}
               </h1>
-              <span className="bg-[#5AB27E] px-2 py-0.5 text-sm font-normal text-white">
-                New Arival
-              </span>
 
               {/* Product status */}
-              <div className="w-32 my-4 flex justify-between items-center">
+              <div className="my-4 flex gap-2 items-center">
                 <span className="text-base font-medium text-pera">Status:</span>
                 <span className="text-base font-semibold text-[#198754]">
                   {isStock ? "In Stock " : "Stock Out"}
                 </span>
               </div>
               {/* Product Price */}
-              <div className="w-28 mt-4 flex justify-between items-center">
-                <span className="text-xl font-medium text-pera">$7,500</span>
-                <span className="text-xl font-medium text-[#888888] line-through">
-                  {productData?.data?.discount > 0 && productData?.data?.discount}
+              <div className="mt-4 flex gap-2 items-center">
+                <span className="text-xl font-medium text-black">
+                   ${productData?.data?.price}
+                </span>
+                <span className="text-xl font-medium text-[#888888] line-through px-1">
+                  ${productData?.data?.discount > 0 && productData?.data?.discount}
                 </span>
               </div>
               {/* Product Short Description */}

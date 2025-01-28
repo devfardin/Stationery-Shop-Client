@@ -22,8 +22,8 @@ const EditProduct = () => {
   const user = useAppSelector(selectCurrentUser);
   const { 
     data: singleProduct, 
-    isLoading: productLoading, } = useGetSingleProductQuery(productId)
-
+    isLoading: productLoading, } = useGetSingleProductQuery(productId);
+  
   const defaultValu = {
     title: singleProduct?.data?.title,
     author: user?.userId,
@@ -32,10 +32,16 @@ const EditProduct = () => {
     discount: singleProduct?.data?.discount,
     quantity: singleProduct?.data?.quantity,
     sku: singleProduct?.data?.sku,
-    category: singleProduct?.data?.category,
+    category: {
+      value: singleProduct?.data?.category?._id,
+      labe: singleProduct?.data?.category?.name
+    }.value,
     brand: singleProduct?.data?.brand,
     feature: singleProduct?.data?.feature,
   }
+
+  console.log(defaultValu);
+  
 
   const handleSubmit = async (data: FieldValues) => {
     const toastId = toast.loading('Updating product, please wait...');
@@ -50,9 +56,11 @@ const EditProduct = () => {
       category: data.category,
       brand: data.brand,
       feature: data.feature,
-      productId: productId,
+      productId: productId, 
     }
-    const result = await updatedProduct(updated)
+    console.log(updated);
+    
+    const result = await updatedProduct(updated);
     if (result?.error) {
       const errorMessage = (result?.error as TError).data?.message;
       toast.error(errorMessage, { id: toastId })
@@ -72,9 +80,11 @@ const EditProduct = () => {
       label: item.name,
       disabled: isLoading,
     }));
-
-  if (!singleProduct?.status) {
-    return <div className="h-screen flex justify-center items-center"> <Loading dash={true} /> </div>
+    
+  if (isLoading) {
+    return <div className="h-screen flex justify-center items-center"> 
+    <Loading dash={true} /> 
+    </div>
   }
   return (
     <div className="col-span-5 rounded-md bg-white shadow-md p-5">
@@ -88,11 +98,11 @@ const EditProduct = () => {
           <STTextAreat name='description' label='Product Description'
             row={6} />
           <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
-            <STInput name='price' label='Product Price' type='text' />
+            <STInput name='price' label='Product Price' type='number' />
             <STInput name='discount' label='Discount Price' type='text' />
           </div>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
-            <STInput name='quantity' label='Product Quantity' type='text' />
+            <STInput name='quantity' label='Product Quantity' type='number' />
             <STInput name='sku' label='Product Sku' type='text' />
           </div>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>

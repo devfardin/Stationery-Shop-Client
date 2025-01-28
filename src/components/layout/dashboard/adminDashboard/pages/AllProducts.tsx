@@ -35,8 +35,8 @@ const AllProducts = () => {
     title,
     author: author?.firstName,
     description,
-    price,
-    discount,
+    price: `$ ${price}`,
+    discount: `$${discount}`,
     quantity: `${quantity} Items`,
     sku,
     category: category?.name,
@@ -76,12 +76,18 @@ const AllProducts = () => {
     {
       title: 'Author',
       dataIndex: 'author',
-      responsive: ['md']
+      responsive: ['lg']
     },
     {
       title: 'Price',
       dataIndex: 'price',
       responsive: ['sm'],
+      width: 80,
+    },
+    {
+      title: 'discount',
+      dataIndex: 'discount',
+      responsive: ['xl'],
       width: 80,
     },
     {
@@ -92,7 +98,7 @@ const AllProducts = () => {
     {
       title: 'Product Sku',
       dataIndex: 'sku',
-      responsive: [ 'lg'],
+      responsive: [ 'xl'],
     },
     {
       title: 'Product Category',

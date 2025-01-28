@@ -27,7 +27,6 @@ const AddProduct = () => {
       disabled: isLoading,
     }));
 
-
   const handleSubmit = async (data: FieldValues) => {
     const toastId = toast.loading('Creating product, please wait...');
     const productData = {
@@ -62,16 +61,16 @@ const AddProduct = () => {
       </h1>
       {/* Add product form */}
       <div className="mt-4">
-        <STForm onSubmit={handleSubmit}>
+        <STForm onSubmit={handleSubmit} defaultValues={{discount:0}}>
           <STInput name='title' label='Product Title' type='text' />
           <STTextAreat name='description' label='Product Description'
             row={6} />
           <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
-            <STInput name='price' label='Product Price' type='text' />
-            <STInput name='discount' label='Discount Price' type='text' />
+            <STInput name='price' label='Product Price' type='number' />
+            <STInput name='discount' label='Discount Price' type='number' />
           </div>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
-            <STInput name='quantity' label='Product Quantity' type='text' />
+            <STInput name='quantity' label='Product Quantity' type='number' />
             <STInput name='sku' label='Product Sku' type='text' />
           </div>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-5'>
