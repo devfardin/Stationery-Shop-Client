@@ -14,7 +14,7 @@ import SubmitBtn from '../../../../form/SubmitBtn';
 const AddCategory = () => {
   const user = useAppSelector(selectCurrentUser);
 
-  const [AddCategory] = useAddCategoryMutation();
+  const [AddCategory, {isLoading}] = useAddCategoryMutation();
   const handleSubmit = async (data: FieldValues) => {
     const toastId = toast.loading('Creating category, please wait...');
     const categoryData = {
@@ -46,7 +46,7 @@ const AddCategory = () => {
           <STTextAreat name='description' label='Category Description'
             row={6} />
           <STInputFile name='feature' label='Category Feature' />
-          <SubmitBtn type='submit' label='Create Category' />
+          <SubmitBtn disabled={isLoading} dash={true} type='submit' label='Create Category' />
         </STForm>
       </div>
 

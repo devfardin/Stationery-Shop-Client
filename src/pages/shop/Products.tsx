@@ -16,8 +16,8 @@ const Products = ({ category, searchResult }) => {
 
   const productFilter = productData?.data?.filter((item) => {
     const matchesSearch =
-      searchResult === "" || item.name.toLowerCase().includes(searchResult);
-    const matchesCategory = category === "" || item.category === category;
+      searchResult === "" || item.title.toLowerCase().includes(searchResult);
+    const matchesCategory = category === "" || item.category.name === category;
     return matchesSearch && matchesCategory;
   });
 
@@ -59,14 +59,14 @@ const Products = ({ category, searchResult }) => {
                     </span>
                   </div>
                   {/* Add to cart button */}
-                  <div className="flex flex-col justify-center items-center mt-5">
+                  {/* <div className="flex flex-col justify-center items-center mt-5">
                     <Link
                       to={`/product/${product._id}`}
                       className="py-2.5 w-full md:w-auto  md:px-10 lg:py-3 lg:px-12 outline-none border-primary border-2 text-base font-medium text-heading hover:text-white bg-no hover:bg-primary hover:border-primary  duration-300 transition-all text-center"
                     >
                       Bye Now
                     </Link>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             ))}

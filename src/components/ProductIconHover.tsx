@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { BsCart3 } from "react-icons/bs";
-import { IoHeartOutline } from "react-icons/io5";
-import { AiOutlineRetweet } from "react-icons/ai";
 import { LiaEyeSolid } from "react-icons/lia";
+import { toast } from "sonner";
 
 const ProductIconHover = ({ product }) => {
 
@@ -20,20 +19,7 @@ const ProductIconHover = ({ product }) => {
         className="p-3.5  group-scoped bg-white rounded-md group hover:bg-primary transition-all duration-300"
       >
         <BsCart3
-          className="text-xl hover-color text-pera 
-                                        transition-all duration-300"
-        />
-      </li>
-      <li className="p-3.5 group-scoped bg-white rounded-md group hover:bg-primary transition-all duration-300">
-        <IoHeartOutline
-          className="text-xl  hover-color text-pera 
-                                        transition-all duration-300"
-        />
-      </li>
-      <li className="p-3.5 group-scoped bg-white rounded-md group hover:bg-primary transition-all duration-300">
-        <AiOutlineRetweet
-          className="text-xl hover-color text-pera 
-                                        transition-all duration-300"
+          className="text-xl hover-color text-pera transition-all duration-300"
         />
       </li>
       <li
@@ -41,11 +27,9 @@ const ProductIconHover = ({ product }) => {
         className="p-3.5 group-scoped bg-white rounded-md group hover:bg-primary transition-all duration-300"
       >
         <LiaEyeSolid
-          className="text-xl hover-color text-pera 
-                                        transition-all duration-300"
+          className="text-xl hover-color text-pera transition-all duration-300"
         />
       </li>
-      {/* <QuickShowProduct isOpen={isOpen} setIsOpen={setIsOpen} id={product._id}/> */}
     </ul>
   );
 };
