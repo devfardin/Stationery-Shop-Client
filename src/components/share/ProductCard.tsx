@@ -27,7 +27,7 @@ const ProductCard = ({ products, startQuery, endQuery, isLoading }: Products) =>
                       src={product.feature}
                       alt="Feature image"
                     />
-                    <ProductAction product={product} />
+                    <ProductAction productId={product?._id} />
 
                     <span className="absolute top-3 right-3 py-1 px-3 xl:px-4 font-normal text-sm text-white  bg-primary">
                       {product?.quantity <= 0 ? "Stock Out" : "New Arival"}

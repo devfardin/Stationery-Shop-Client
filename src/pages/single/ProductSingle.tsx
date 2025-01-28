@@ -50,7 +50,7 @@ const ProductSingle = () => {
               <div className="my-4 flex gap-2 items-center">
                 <span className="text-base font-medium text-pera">Status:</span>
                 <span className="text-base font-semibold text-[#198754]">
-                  {isStock ? "In Stock " : "Stock Out"}
+                  {isStock ? "In Stock " : <span className='text-secondary'>Stock Out</span>}
                 </span>
               </div>
               {/* Product Price */}

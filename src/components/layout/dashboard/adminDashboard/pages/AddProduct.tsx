@@ -13,12 +13,9 @@ import { selectCurrentUser } from '../../../../../redux/features/auth/authSlice'
 import { toast } from 'sonner';
 
 const AddProduct = () => {
-
   const [addProduct, {isLoading: buttonDesible}] = useAddProductMutation();
-  
   const { data: categories, isLoading } = useCategoriesQuery(undefined)
   const user = useAppSelector(selectCurrentUser);
-
   // create categories options
   const categoriesOptions: TCategoryOption[] = categories?.data?.map(
     (item: TOptionType) => ({
@@ -26,7 +23,6 @@ const AddProduct = () => {
       label: item.name,
       disabled: isLoading,
     }));
-
   const handleSubmit = async (data: FieldValues) => {
     const toastId = toast.loading('Creating product, please wait...');
     const productData = {
@@ -41,8 +37,6 @@ const AddProduct = () => {
       brand: data.brand,
       feature: data.feature,
     }
-    console.log(productData);
-    
     const result = await addProduct(productData)
     if (result?.error) {
       const errorMessage = (result?.error as TError).data?.message;
@@ -51,9 +45,7 @@ const AddProduct = () => {
       const success = result.data.message;
       toast.success(success, { id: toastId })
     }
-
   }
-
   return (
     <div className="col-span-5 rounded-md bg-white shadow-md p-5">
       <h1 className="text-2xl font-medium text-heading border-b border-dashBorder pb-2">
