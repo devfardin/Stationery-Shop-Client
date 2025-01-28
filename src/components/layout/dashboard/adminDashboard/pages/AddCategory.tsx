@@ -34,10 +34,6 @@ const AddCategory = () => {
     }
   }
 
-  const defaultValue = {
-    "name": "Sports Gear",
-    "description": "High-quality sports equipment and accessories.",
-  }
   return (
     <div className="col-span-5 rounded-md bg-white shadow-md p-5">
       <h1 className="text-2xl font-medium text-heading border-b border-dashBorder pb-2">
@@ -45,7 +41,7 @@ const AddCategory = () => {
       </h1>
       {/* Add product form */}
       <div className="mt-4">
-        <STForm onSubmit={handleSubmit} defaultValues={defaultValue}>
+        <STForm onSubmit={handleSubmit}>
           <STInput name='name' label='Category Name' type='text' />
           <STTextAreat name='description' label='Category Description'
             row={6} />

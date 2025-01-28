@@ -40,7 +40,7 @@ const AllCategores = () => {
   }: TCategoryTable, index: string) => ({
     key: _id,
     name,
-    author: author?.name,
+    author: `${author?.firstName} ${author?.lastName}` ,
     description,
     feature,
     index: index + 1,
@@ -73,6 +73,7 @@ const AllCategores = () => {
     {
       title: 'Category Name',
       dataIndex: 'name',
+      width: 170,
     },
    
     {
@@ -83,7 +84,8 @@ const AllCategores = () => {
     {
       title: 'Author',
       dataIndex: 'author',
-      responsive: ['md']
+      responsive: ['md'],
+      width: 170,
     },
     {
       title: 'Action',

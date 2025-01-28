@@ -12,17 +12,21 @@ import { useParams } from 'react-router';
 import { useGetSingleProductQuery, useUpdateProductMutation } from '../../../../../redux/features/product/productApi';
 import Loading from '../../../../share/Loading';
 import { Image } from 'antd';
+import { selectCurrentUser } from '../../../../../redux/features/auth/authSlice';
+import { useAppSelector } from '../../../../../redux/hooks';
 
 const EditProduct = () => {
   const { data: categories, isLoading, } = useCategoriesQuery(undefined);
   const [updatedProduct] = useUpdateProductMutation();
   const { productId } = useParams();
+  const user = useAppSelector(selectCurrentUser);
   const { 
     data: singleProduct, 
     isLoading: productLoading, } = useGetSingleProductQuery(productId)
 
   const defaultValu = {
     title: singleProduct?.data?.title,
+    author: user?.userId,
     description: singleProduct?.data?.description,
     price: singleProduct?.data?.price,
     discount: singleProduct?.data?.discount,
@@ -39,6 +43,7 @@ const EditProduct = () => {
       title: data.title,
       description: data.description,
       price: data.price,
+      author: user?.userId,
       discount: data.discount,
       quantity: data.quantity,
       sku: data.sku,

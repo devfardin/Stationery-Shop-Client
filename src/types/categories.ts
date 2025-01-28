@@ -1,5 +1,6 @@
 type TAuthor = {
-    name: string,
+    firstName: string,
+    lastName: string,
     email: string,
     _id: string,
   }

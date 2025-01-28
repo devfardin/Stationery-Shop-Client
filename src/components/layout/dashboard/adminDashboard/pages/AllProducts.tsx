@@ -1,32 +1,39 @@
 import { Button, Image, Table, TableColumnsType, TableProps } from "antd";
-import { useGetProductsQuery } from "../../../../../redux/features/product/productApi"
+import { useGetProductsQuery, useProductDeleteMutation } from "../../../../../redux/features/product/productApi"
 import Loading from "../../../../share/Loading";
 import { Menu } from "@headlessui/react";
 import { FiEdit } from "react-icons/fi";
 import { TDataTableItem } from "../../../../../types/product";
 import { AiOutlineDelete } from "react-icons/ai";
 import { Link } from "react-router";
+import { toast } from "sonner";
+import { TError } from "../../../../../types/global";
 
 const AllProducts = () => {
   const { data: productData, isLoading, isFetching } = useGetProductsQuery(undefined);
+  const [deleteProduct] = useProductDeleteMutation();
 
-  const action = [
-    {
-      label: 'Edit',
-      link: 'edit-product',
-      icon: FiEdit,
-    },
-    {
-      label: 'Delete',
-      link: '/edit',
-      icon: AiOutlineDelete,
-    },
-  ]
+  // Delete functionalaty
+  const handleProductDelete = async(id: string) => {
+    const toastId = toast.loading('Deleting Category, please wait...');
+    const result = await deleteProduct(id);
+    if (result?.error) {
+      const errorMessage = (result?.error as TError).data?.message;
+      toast.error(errorMessage, { id: toastId })
+    } else {
+      const success = result.data.message;
+      toast.success(success, { id: toastId })
+      setTimeout(()=> {
+        location.reload();
+      }, toastId as number)
+    }
+  };
+
   const dataTable = productData?.data?.map(({ _id, title, author, description, price, discount, quantity, sku, category, brand, feature,
   }: TDataTableItem, index: string) => ({
     key: _id,
     title,
-    author: author?.name,
+    author: author?.firstName,
     description,
     price,
     discount,
@@ -112,14 +119,18 @@ const AllProducts = () => {
               </div>
               <Menu.Items className="absolute left-0 py-2 mt-2 w-24 origin-top-right divide-y divide-gray-100 rounded-sm bg-white shadow-lg ring-1 ring-black/5 focus:outline-none z-20">
                 <div className="px-1 py-1 ">
-                  {
-                    action.map(({ label, link, icon: Icon }) => <Menu.Item>
-                      <Link to={`/dashboard/${link}/${product.key}`} className="text-base font-normal flex w-full gap-2 items-center rounded-md px-2 py-1 text-dashPrimary hover:text-primary pointer" >
-                        <Icon />
-                        {label}
+                 <Menu.Item>
+                      <Link to={`/admin/dashboard/edit-product/${product.key}`} className="text-base font-normal flex w-full gap-2 items-center rounded-md px-2 py-1 text-dashPrimary hover:text-primary pointer" >
+                        <FiEdit />
+                        Edit
                       </Link>
-                    </Menu.Item>)
-                  }
+                    </Menu.Item>
+                 <Menu.Item>
+                 <button onClick={ ()=> handleProductDelete(product.key) } className="text-base font-normal flex w-full gap-2 items-center rounded-md px-2 py-1 text-dashPrimary hover:text-primary pointer" >
+                        <AiOutlineDelete />
+                        Delete
+                      </button>
+                    </Menu.Item>
                 </div>
               </Menu.Items>
             </Menu>
@@ -132,7 +143,7 @@ const AllProducts = () => {
     console.log('params', pagination, filters, sorter, extra);
   };
 
-  if (isLoading) {
+  if (isLoading && isFetching) {
     return <div className="h-screen flex justify-center items-center"> <Loading dash={true} /> </div>
   }
   return (
