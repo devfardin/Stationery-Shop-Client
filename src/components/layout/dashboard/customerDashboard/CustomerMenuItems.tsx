@@ -1,6 +1,6 @@
 import React from "react";
 import { FaHome } from "react-icons/fa";
-import { BsCartCheck} from "react-icons/bs";
+import { BsCartCheck, BsShop} from "react-icons/bs";
 import SidebarLink from "../component/SidebarLink";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 
@@ -15,14 +15,19 @@ const CustomerMenuItems:React.FC<AdminMenuItemsProps> = ({ isOpen }) => {
           icon: FaHome,
         },
         {
-          label: "My Orders",
-          link: "my-orders",
-          icon: HiOutlineShoppingBag,
+          label: "Shop",
+          link: "/shop",
+          icon: BsShop,
         },
         {
           label: "My Cart",
           link: "my-cart",
           icon: BsCartCheck,
+        },
+        {
+          label: "My Orders",
+          link: "my-orders",
+          icon: HiOutlineShoppingBag,
         },
         {
           label: "Payment History",

@@ -1,12 +1,9 @@
 import { Image, Table, TableColumnsType, TableProps } from 'antd';
-import { RiDeleteBin6Line } from 'react-icons/ri';
 import { useAppSelector } from '../../../../../redux/hooks';
 import { selectCurrentUser } from '../../../../../redux/features/auth/authSlice';
 import { useGetItemsBaseUserQuery } from '../../../../../redux/features/cart/cartApi';
 import { TCartItem } from '../../../../../types/cart';
 import Loading from '../../../../share/Loading';
-import LinkButton from '../../../../share/LinkButton';
-import { FiMinus, FiPlus } from 'react-icons/fi';
 
 
 const MyOrders = () => {
@@ -26,9 +23,16 @@ const MyOrders = () => {
 
   const columns: TableColumnsType<typeof dataTable[0]> = [
     {
+      title: 'Ser No',
+      dataIndex: 'index',
+      width: 90,
+      align: 'center',
+    },
+    {
       title: 'Feature image',
       key: 'feature_img',
       responsive: ['lg'],
+      align: 'center',
       render: (product) => (
         <div className="flex justify-center">
           <Image
@@ -46,27 +50,27 @@ const MyOrders = () => {
       dataIndex: 'title',
     },
     {
+      title: 'Status',
+      dataIndex: 'title',
+      align: 'center',
+    },
+    {
       title: 'Price',
       dataIndex: 'price',
+      align: 'center',
     },
     {
       title: 'Quantity',
       responsive: ['md'],
-      key: 'quantity',
-      render: (product) => (
-        <div className="flex items-center gap-3 cursor-pointer">
-        </div>
-      ),
+      dataIndex: 'quantity',
+      align: 'center'
     },
     {
       title: 'Total',
       dataIndex: 'total',
       responsive: ['md'],
-    },
-    {
-      title: 'Action',
-      key: 'action',
-    },
+      align: 'center',
+    }
   ];
 
   const onChange: TableProps<typeof dataTable[0]>['onChange'] = (pagination, filters, sorter, extra) => {
@@ -115,15 +119,11 @@ const MyOrders = () => {
               <span className="text-pera">$00</span>
             </h2>
 
-            <h2 className="text-lg font-medium text-heading border-b border-dashBorder pb-4 flex justify-between items-center gap-5">
+            <h2 className="text-lg font-medium text-heading flex justify-between items-center gap-5">
               Total Amount
-              <span className="text-pera"></span>
+              <span className="text-pera">$ 00</span>
             </h2>
-            <LinkButton
-              label="Proceed to Checkout"
-              fullWidth={true}
-              link="/checkout"
-            />
+           
           </div>
         </div>
       </div>

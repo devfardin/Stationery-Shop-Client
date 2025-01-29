@@ -100,7 +100,7 @@ const Header = () => {
                       <LinkButton
                         label="View Cart"
                         fullWidth={true}
-                        link={"/cart"}
+                        link={"/customer/dashboard/my-cart"}
                       ></LinkButton>
                     </div>
                   </div>

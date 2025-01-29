@@ -17,6 +17,7 @@ const MyCart = () => {
   const [cartItems, setCartItems] = useState<TCartItem[]>([]);
   const [updateCart] = useCartItemUpdateMutation();
   const [deleteCart] = useCartItemDeleteMutation();
+  
   const calculateTotalPrice = () => {
     return cartItems?.reduce((total, item) => {
       return total + item.product.price * item.quantity;
@@ -165,7 +166,7 @@ const MyCart = () => {
         />
       </div>
       <div className="col-span-full xl:col-span-2">
-        <div className="border border-dashBorder p-10 bg-white">
+        <div className="border border-dashBorder px-10 py-8 bg-white">
           <div className="flex flex-col gap-4">
             <h2 className="text-2xl font-medium text-heading border-b border-dashBorder pb-4">
               Cart Total:
