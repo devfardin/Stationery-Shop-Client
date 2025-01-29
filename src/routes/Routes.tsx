@@ -23,6 +23,7 @@ import CustomerProtected from "../components/layout/dashboard/proctedRoutes/Cust
 import CustomerDashboard from "../components/layout/dashboard/customerDashboard/pages/CustomerDashboard";
 import AdminDashboard from "../components/layout/dashboard/adminDashboard/pages/AdminDashboard";
 import ProductSingle from "../pages/single/ProductSingle";
+import Checkout from "../pages/single/Checkout";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Registration />
+            },
+            {
+                path: '/checkout',
+                element: <Checkout />
             },
         ],
     },

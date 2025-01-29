@@ -20,9 +20,11 @@ const ProductAction = ({ productId }: { productId: string }) => {
     const toastId = toast.loading('Item adding to your, please wait...')
     const user = userInfo?.userEmail;
     const product = id;
+    const quantity = 1;
     const cartItems = {
       user,
-      product
+      product,
+      quantity
     }
     const result = await addCart(cartItems)
     if (result?.error) {
@@ -31,7 +33,7 @@ const ProductAction = ({ productId }: { productId: string }) => {
     } else {
       const success = result.data.message;
       toast.success(success, { id: toastId });
-      navigate('/about')
+      navigate('/checkout')
     }
   }
   return (
