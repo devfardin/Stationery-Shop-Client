@@ -32,9 +32,8 @@ const Orders = () => {
         icon: AiOutlineDelete,
       },
     ]
+
   const {data: categories, isLoading, isFetching } = useCategoriesQuery(undefined)
-
-
 
   const dataTable = categories?.data?.map(({ _id, name, author, description, feature,
   }: TCategoryTable, index: string) => ({

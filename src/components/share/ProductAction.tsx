@@ -2,11 +2,11 @@ import { BsCart3 } from 'react-icons/bs'
 import { GrShop } from 'react-icons/gr'
 import { toast } from 'sonner';
 import QuickViewModal from '../QuickViewModal';
-import { useAddProductInCartMutation } from '../../redux/features/cartApi';
 import { TError } from '../../types/global';
 import { useAppSelector } from '../../redux/hooks';
 import { selectCurrentUser } from '../../redux/features/auth/authSlice';
 import { useNavigate } from 'react-router';
+import { useAddProductInCartMutation } from '../../redux/features/cart/cartApi';
 
 const ProductAction = ({ productId }: { productId: string }) => {
   const userInfo = useAppSelector(selectCurrentUser)

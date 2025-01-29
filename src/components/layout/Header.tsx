@@ -12,12 +12,13 @@ import { logOut, selectCurrentUser } from '../../redux/features/auth/authSlice';
 import { toast } from 'sonner';
 import { Menu, MenuButton } from '@headlessui/react';
 import { TMenuItemType } from '../../types/global';
+import { useGetItemsBaseUserQuery } from '../../redux/features/cart/cartApi';
 
 const Header = () => {
   const dispatch = useAppDispatch()
-
   const user = useAppSelector(selectCurrentUser);
   const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const {data: getCartItems} = useGetItemsBaseUserQuery(user?.userEmail);
   const menuItems: TMenuItemType[] = [
     {
       title: "Home",
@@ -86,8 +87,8 @@ const Header = () => {
                     <div className="p-3.5 hover:bg-primary hover:text-white group-hover:bg-primary  duration-300 transition-all bg-neutral-200">
                       <div>
                         <BsCart2 className="text-2xl group-hover:text-white" />
-                        <span className="absolute duration-300 right-0 top-0.5 flex h-[20px] w-[20px] items-center justify-center rounded-full bg-[#FF699B] text-center text-[11px] text-white ">
-                          {/* { cartItems?.length } */} 10
+                        <span className="absolute duration-300 right-0 top-0.5 flex h-[20px] w-[20px] items-center justify-center rounded-full bg-[#FF699B] text-center text-[11px] text-white font-medium">
+                          {getCartItems?.data?.length}
                         </span>
                       </div>
                     </div>
@@ -97,9 +98,9 @@ const Header = () => {
                         No Items In Cart
                       </h1>
                       <LinkButton
-                        label="Check Out"
+                        label="View Cart"
                         fullWidth={true}
-                        link={"/about-us"}
+                        link={"/cart"}
                       ></LinkButton>
                     </div>
                   </div>

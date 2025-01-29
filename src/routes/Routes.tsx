@@ -24,6 +24,7 @@ import CustomerDashboard from "../components/layout/dashboard/customerDashboard/
 import AdminDashboard from "../components/layout/dashboard/adminDashboard/pages/AdminDashboard";
 import ProductSingle from "../pages/single/ProductSingle";
 import Checkout from "../pages/single/Checkout";
+import Cart from "../pages/cart/Cart";
 const router = createBrowserRouter([
     {
         path: '/',
