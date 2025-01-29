@@ -16,7 +16,7 @@ import { toast } from "sonner";
 const Checkout = () => {
   const userInfo = useAppSelector(selectCurrentUser);
   const [addOrder] = useAddOrderMutation();
-  const { data: getCartItems, isFetching, isLoading } = useGetItemsBaseUserQuery(userInfo?.userEmail);
+  const { data: getCartItems, isFetching } = useGetItemsBaseUserQuery(userInfo?.userEmail);
 
   const handleCheckOut = async (data:FieldValues) => {
     const toastId = toast.loading('Order Creating');
@@ -40,7 +40,7 @@ const Checkout = () => {
   }
 
   const calculateTotalPrice = () => {
-    return getCartItems?.data?.reduce((total, item) => {
+    return getCartItems?.data?.reduce((total: number, item: { product: { price: number; }; quantity: number; }) => {
       return total + item.product.price * item.quantity;
     }, 0);
   };
