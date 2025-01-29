@@ -58,8 +58,6 @@ const EditProduct = () => {
       feature: data.feature,
       productId: productId, 
     }
-    console.log(updated);
-    
     const result = await updatedProduct(updated);
     if (result?.error) {
       const errorMessage = (result?.error as TError).data?.message;

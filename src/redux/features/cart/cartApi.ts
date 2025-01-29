@@ -11,10 +11,23 @@ const  cartManagementAPi = baseApi.injectEndpoints({
         }),
         getItemsBaseUser: builder.query({
             query: (email) => ({
-                url: `cart/items?email=${email}`,
+                url: `/cart/items?email=${email}`,
                 method: 'GET',
             })
-        })
+        }),
+        cartItemUpdate: builder.mutation({
+            query: (data) => ({
+                url: `/cart`,
+                method: 'PUT',
+                body: data,
+            })
+        }),
+        cartItemDelete: builder.mutation({
+            query: (id) => ({
+                url: `/cart/${id}`,
+                method: 'DELETE',
+            })
+        }),
     })
 })
-export const { useAddProductInCartMutation, useGetItemsBaseUserQuery } = cartManagementAPi
+export const { useAddProductInCartMutation, useGetItemsBaseUserQuery, useCartItemUpdateMutation, useCartItemDeleteMutation } = cartManagementAPi
