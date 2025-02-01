@@ -3,7 +3,6 @@ import STInput from '../../../../form/STInput';
 import SubmitBtn from '../../../../form/SubmitBtn';
 import { FieldValues } from 'react-hook-form';
 import STTextAreat from '../../../../form/STTextAreat';
-import STInputFile from '../../../../form/STInputFile';
 import { useAddProductMutation } from '../../../../../redux/features/product/productApi';
 import STSelect from '../../../../form/STSelect';
 import { useCategoriesQuery } from '../../../../../redux/features/category/categoryApi';
@@ -69,7 +68,7 @@ const AddProduct = () => {
             <STSelect name='category' label='Product Category' options={categoriesOptions} />
             <STInput name='brand' label='Product Brand' type='text' />
           </div>
-          <STInputFile name='featureImg' label='Feature Image' />
+          <STInput name='feature' label='Feature image url' type='text' />
           <SubmitBtn disabled={buttonDesible} dash={true} type='submit' label='Create Product' />
         </STForm>
       </div>

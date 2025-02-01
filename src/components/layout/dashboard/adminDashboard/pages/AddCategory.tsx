@@ -6,7 +6,6 @@ import { useAppSelector } from '../../../../../redux/hooks';
 import { TError } from '../../../../../types/global';
 import STForm from '../../../../form/STForm';
 import STInput from '../../../../form/STInput';
-import STInputFile from '../../../../form/STInputFile';
 import STTextAreat from '../../../../form/STTextAreat';
 import SubmitBtn from '../../../../form/SubmitBtn';
 
@@ -45,7 +44,7 @@ const AddCategory = () => {
           <STInput name='name' label='Category Name' type='text' />
           <STTextAreat name='description' label='Category Description'
             row={6} />
-          <STInputFile name='feature' label='Category Feature' />
+          <STInput name='feature' label='Category Feature url' type='text' />
           <SubmitBtn disabled={isLoading} dash={true} type='submit' label='Create Category' />
         </STForm>
       </div>

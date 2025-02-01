@@ -13,8 +13,27 @@ const ProductAction = ({ productId }: { productId: string }) => {
 
   const navigate = useNavigate();
   const [addCart] = useAddProductInCartMutation()
-  const handleByeNow = (id: string) => {
-    toast.info(id)
+  const handleByeNow = async (id: string) => {
+    const toastId = toast.loading('Item adding to your, please wait...')
+    const user = userInfo?.userEmail;
+    const product = id;
+    const quantity = 1;
+    const cartItems = {
+      user,
+      product,
+      quantity
+    }
+    if(!user) {
+      toast.warning('Please login for bye a product')
+    }
+    const result = await addCart(cartItems)
+    if (result?.error) {
+      const errorMessage = (result?.error as TError).data?.message;
+      toast.error(errorMessage, { id: toastId })
+    } else {
+      const success = result.data.message;
+      toast.success(success, { id: toastId });
+    }
   }
   const handleAddToCart = async (id: string) => {
     const toastId = toast.loading('Item adding to your, please wait...')

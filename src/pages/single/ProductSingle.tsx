@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useParams } from 'react-router'
+import { useNavigate, useParams } from 'react-router'
 import { useGetSingleProductQuery } from '../../redux/features/product/productApi'
 import Loading from '../../components/share/Loading'
 import PageHeader from '../../components/share/PageHeader'
@@ -9,8 +9,15 @@ import { FiMinus, FiPlus } from 'react-icons/fi'
 import SingleUserInfo from '../../components/share/SingleUserInfo'
 import { GoGift } from 'react-icons/go'
 import { TbTruckReturn } from 'react-icons/tb'
+import { useAddProductInCartMutation } from '../../redux/features/cart/cartApi'
+import { useAppSelector } from '../../redux/hooks'
+import { selectCurrentUser } from '../../redux/features/auth/authSlice'
+import { TError } from '../../types/global'
 
 const ProductSingle = () => {
+  const navigate = useNavigate();
+  const [addCart] = useAddProductInCartMutation()
+  const userInfo = useAppSelector(selectCurrentUser)
     const { productId } = useParams();
     const [productQuantity, setProductQuantity] = useState(1);
     const { data: productData, isLoading } = useGetSingleProductQuery(productId)
@@ -23,9 +30,45 @@ const ProductSingle = () => {
   if (productData?.data?.stock < productQuantity) {
     toast.error("Select Maxiam number");
   }
-  const handleAddCart = (id: string) => {
-    console.log(id);
+  const handleByeNow = async (id: string) => {
+    const toastId = toast.loading('Item adding to your, please wait...')
+    const user = userInfo?.userEmail;
+    const product = id;
+    const quantity = 1;
+    const cartItems = {
+      user,
+      product,
+      quantity
+    }
+    const result = await addCart(cartItems)
+    if (result?.error) {
+      const errorMessage = (result?.error as TError).data?.message;
+      toast.error(errorMessage, { id: toastId })
+    } else {
+      const success = result.data.message;
+      toast.success(success, { id: toastId });
+      navigate('/checkout')
+    }
   }
+  const handleAddToCart = async (id: string) => {
+      const toastId = toast.loading('Item adding to your, please wait...')
+      const user = userInfo?.userEmail;
+      const product = id;
+      const quantity = 1;
+      const cartItems = {
+        user,
+        product,
+        quantity
+      }
+      const result = await addCart(cartItems)
+      if (result?.error) {
+        const errorMessage = (result?.error as TError).data?.message;
+        toast.error(errorMessage, { id: toastId })
+      } else {
+        const success = result.data.message;
+        toast.success(success, { id: toastId });
+      }
+    }
     if (isLoading) {
         return <div className="h-screen flex justify-center items-center">
             <Loading />
@@ -98,16 +141,16 @@ const ProductSingle = () => {
               </div>
               <div className="flex flex-col md:flex-row lg:flex-row gap-5 mt-6">
                 <button
-                  onClick={() => handleAddCart(productData?.data?._id)}
+                  onClick={() => handleAddToCart(productData?.data?._id)}
                   className="bg-[#333333] py-3.5 px-16 font-medium text-base text-white"
                 >
                   Add to Cart
                 </button>
-                <Link to='/'
+                <button onClick={()=>handleByeNow(productData?.data?._id)}
                   className="bg-[#DDDDDD] py-3.5 px-16 font-medium text-base text-heading"
                 >
                   Buy Now
-                </Link>
+                </button>
               </div>
               {/* Product Info */}
               <div className="flex justify-center gap-2 mt-8 flex-col">
