@@ -21,12 +21,8 @@ const ProductSingle = () => {
     const { productId } = useParams();
     const [productQuantity, setProductQuantity] = useState(1);
     const { data: productData, isLoading } = useGetSingleProductQuery(productId)
-
-    console.log(productData?.data);
-
   // Stock Management
   const isStock = productData?.data?.quantity > 0;
-
   if (productData?.data?.stock < productQuantity) {
     toast.error("Select Maxiam number");
   }
@@ -39,6 +35,9 @@ const ProductSingle = () => {
       user,
       product,
       quantity
+    }
+    if(!user) {
+      toast.warning('Please log in to purchase a product.')
     }
     const result = await addCart(cartItems)
     if (result?.error) {
@@ -59,6 +58,9 @@ const ProductSingle = () => {
         user,
         product,
         quantity
+      }
+      if(!user) {
+        toast.warning('Please log in to purchase a product.')
       }
       const result = await addCart(cartItems)
       if (result?.error) {

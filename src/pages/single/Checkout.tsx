@@ -8,27 +8,31 @@ import { useGetItemsBaseUserQuery } from "../../redux/features/cart/cartApi";
 import { useAppSelector } from "../../redux/hooks";
 import STInput from "../../components/form/STInput";
 import SubmitBtn from "../../components/form/SubmitBtn";
-import { TProducts } from "../../types/product";
 import { useAddOrderMutation } from "../../redux/features/order/orderApi";
 import { TError } from "../../types/global";
 import { toast } from "sonner";
+import { TCartItem } from "../../types/cart";
 
 const Checkout = () => {
   const userInfo = useAppSelector(selectCurrentUser);
   const [addOrder] = useAddOrderMutation();
   const { data: getCartItems, isFetching } = useGetItemsBaseUserQuery(userInfo?.userEmail);
 
+  
   const handleCheckOut = async (data:FieldValues) => {
     const toastId = toast.loading('Order Creating');
     const shiping = data;
-    const porduct = getCartItems?.data?.map((products: TProducts)=> {
-      return products?._id
-    })
+
+    const porducts = getCartItems.data.map((item: TCartItem)=> { return item.product }
+    )
     const checkoutInfo = {
       shiping,
-      porduct: porduct,
+      porducts,
     }
     const result = await addOrder(checkoutInfo)
+    console.log(result);
+    console.log( getCartItems?.data);
+    
     if (result?.error) {
       const errorMessage = (result?.error as TError).data?.message;
       toast.error(errorMessage, { id: toastId })
@@ -36,9 +40,7 @@ const Checkout = () => {
       const success = result.data.message;
       toast.success(success, { id: toastId })
     }
-    
   }
-
   const calculateTotalPrice = () => {
     return getCartItems?.data?.reduce((total: number, item: { product: { price: number; }; quantity: number; }) => {
       return total + item.product.price * item.quantity;

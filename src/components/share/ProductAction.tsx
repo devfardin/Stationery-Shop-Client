@@ -24,7 +24,7 @@ const ProductAction = ({ productId }: { productId: string }) => {
       quantity
     }
     if(!user) {
-      toast.warning('Please login for bye a product')
+      toast.warning('Please log in to purchase a product.')
     }
     const result = await addCart(cartItems)
     if (result?.error) {
@@ -44,6 +44,9 @@ const ProductAction = ({ productId }: { productId: string }) => {
       user,
       product,
       quantity
+    }
+    if(!user) {
+      toast.warning('Please log in to purchase a product.')
     }
     const result = await addCart(cartItems)
     if (result?.error) {

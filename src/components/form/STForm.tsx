@@ -26,7 +26,7 @@ const STForm = ({onSubmit, children, defaultValues, resolver}: TFormProps) => {
     const methods = useForm<TFormProps>(formConfig);
     const handleSubmit: SubmitHandler<FieldValues> = (data) => {
         onSubmit(data);
-        methods.reset()
+        // methods.reset()
     }
     
   return (

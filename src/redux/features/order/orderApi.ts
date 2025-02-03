@@ -9,19 +9,19 @@ const productManagementApi = baseApi.injectEndpoints({
                 body: data,
             })
         }),
-        // getProducts: builder.query({
-        //     query: () => ({
-        //         url: '/products',
-        //         method: 'GET',
-        //     })
-        // }),
-        // updateProduct: builder.mutation({
-        //     query: (data) => ({
-        //             url: `/products/${data.productId}`,
-        //             method: 'PUT',
-        //             body: data,
-        //     })
-        // }),
+        getProducts: builder.query({
+            query: () => ({
+                url: '/products',
+                method: 'GET',
+            })
+        }),
+        updateProduct: builder.mutation({
+            query: (data) => ({
+                    url: `/products/${data.productId}`,
+                    method: 'PUT',
+                    body: data,
+            })
+        }),
     })
 })
 export const { useAddOrderMutation } = productManagementApi;
