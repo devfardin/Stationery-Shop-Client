@@ -1,18 +1,24 @@
-import { useCategoriesQuery, useCategoryDeleteMutation } from '../../../../../redux/features/category/categoryApi'
 import Loading from '../../../../share/Loading'
-import { Button, Image, Table, TableColumnsType, TableProps } from 'antd';
-import { AiOutlineDelete } from 'react-icons/ai'
+import { Select, Space, Table, TableColumnsType, TableProps } from 'antd';
 import { TCategoryTable } from '../../../../../types/categories'
-import { Menu } from '@headlessui/react'
 import { toast } from 'sonner';
 import { TError } from '../../../../../types/global';
+import { useGetOrdersQuery, useUpdateOrderStatusMutation } from '../../../../../redux/features/order/orderApi';
+import { TOrder } from '../../../../../types/Orders';
 
 const Orders = () => {
-  const [deleteCategory] = useCategoryDeleteMutation()
+  const { data: getOrders, isLoading, isFetching } = useGetOrdersQuery(undefined);
+  const [updateOrderStatus] = useUpdateOrderStatusMutation();
 
-  const handlecategoryDelete = async(id: string) => {
-    const toastId = toast.loading('Deleting Category, please wait...');
-    const result = await deleteCategory(id);
+  const handleChange = async(value: string) => {
+    const getValue = value.split(' ')
+    const status = getValue[0]
+    const id = getValue[1]
+    const info = {status, id}
+    console.log(info);
+    
+    const toastId = toast.loading('Updating Order status, please wait...');
+    const result = await updateOrderStatus(info);
     if (result?.error) {
       const errorMessage = (result?.error as TError).data?.message;
       toast.error(errorMessage, { id: toastId })
@@ -23,25 +29,17 @@ const Orders = () => {
         location.reload();
       }, toastId as number)
     }
-  }
-  
-    const action = [
-      {
-        label: 'Delete',
-        link: '/delete',
-        icon: AiOutlineDelete,
-      },
-    ]
-
-  const {data: categories, isLoading, isFetching } = useCategoriesQuery(undefined)
-
-  const dataTable = categories?.data?.map(({ _id, name, author, description, feature,
-  }: TCategoryTable, index: string) => ({
+   };
+  const dataTable = getOrders?.data?.map(({ _id, porducts, shiping, user, status, transation, 
+  }: TOrder, index: string) => ({
     key: _id,
-    name,
-    author: author?.name,
-    description,
-    feature,
+    customer: `${shiping.firstName} ${shiping.lastName}`,
+    product: porducts?.map((items) => <h1>{items.title}  $ {items.price}</h1>),
+    address: shiping.address,
+    apartment: shiping.Apartment,
+    paymentStatus: transation?.transationStatus,
+    transitionId: transation?.id,
+    status,
     index: index + 1,
   }));
 
@@ -52,73 +50,58 @@ const Orders = () => {
       width: 70,
     },
     {
-      title: 'Order Item',
+      title: 'Customer Name',
       key: 'feature_img',
       responsive: ['lg'],
-      render: (product) => {
-        return (
-          <div className="flex justify-center">
-            <Image
-              width={100}
-              height={80}
-              alt={product?.name}
-              src={product?.feature}
-              placeholder={isFetching}
-            />
-          </div>
-        )
-      }
+      dataIndex: 'customer'
     },
     {
-      title: 'Category Name',
-      dataIndex: 'name',
+      title: 'Product Name',
+      dataIndex: 'product',
+    },
+    {
+      title: 'Address',
+      dataIndex: 'address',
     },
    
     {
+      title: 'Apartment',
+      dataIndex: 'apartment',
+      responsive: ['md']
+    },
+    {
+      title: 'Payment Status',
+      dataIndex: 'paymentStatus',
+      responsive: ['md']
+    },
+    {
       title: 'Status',
-      dataIndex: 'description',
-      responsive: ['md']
-    },
-    {
-      title: 'Quantity',
-      dataIndex: 'author',
-      responsive: ['md']
-    },
-    {
-      title: 'Total',
-      dataIndex: 'author',
-      responsive: ['md']
-    },
-    {
-      title: 'Action',
-      key: 'x',
-      render: (category) => {
+      responsive: ['md'],
+      align: 'center',
+      render: (items) => {
         return (
-          <div>
-            <Menu as="div" className="relative">
-              <div>
-                <Menu.Button>
-                  <div className="flex gap-2 sm:gap-4 items-center">
-                    <Button>Action</Button>
-                  </div>
-                </Menu.Button>
-              </div>
-              <Menu.Items className="absolute left-0 py-2 mt-2 w-24 origin-top-right divide-y divide-gray-100 rounded-sm bg-white shadow-lg ring-1 ring-black/5 focus:outline-none z-20">
-                <div className="px-1 py-1 ">
-                  {
-                    action.map(({ label, icon: Icon }) => <Menu.Item>
-                      <button onClick={ ()=> handlecategoryDelete(category.key) } className="text-base font-normal flex w-full gap-2 items-center rounded-md px-2 py-1 text-dashPrimary hover:text-primary pointer" >
-                        <Icon />
-                        {label}
-                      </button>
-                    </Menu.Item>)
-                  }
-                </div>
-              </Menu.Items>
-            </Menu>
-          </div>
+            <Space wrap>
+            <Select
+              defaultValue={items?.status}
+              style={{ width: 120 }}
+              onChange={handleChange}
+              options={[
+                { value: `Pending ${items?.key}`, label: 'Pending' },
+                { value: `Paid ${items?.key}`, label: 'Paid' },
+                { value: `Shipped ${items?.key}`, label: 'Shipped' },
+                { value: `Completed ${items?.key}`, label: 'Completed' },
+                { value: `Cancelled ${items?.key}`, label: 'Cancelled' },
+                { value: `Failed ${items?.key}`, label: 'Failed' },
+              ]}
+            />
+          </Space>
         )
       }
+    },
+    {
+      title: 'Transition Id',
+      dataIndex: 'transitionId',
+      responsive: ['md']
     },
   ];
   const onChange: TableProps<TCategoryTable>['onChange'] = (pagination, filters, sorter, extra) => {

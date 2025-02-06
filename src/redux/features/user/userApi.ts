@@ -22,7 +22,25 @@ const userApi = baseApi.injectEndpoints({
                 }
             }
         }),
+        getUsers:builder.query({
+            query: () => ({
+                url: `/users`,
+                method: 'GET',
+            }),
+            transformResponse: (response: TResponseRedux<TUserInfo>) => {
+                return {
+                    data: response.data,
+                }
+            }
+        }),
+        userUpdate: builder.mutation({
+            query: (userData) => ({
+                url: '/users',
+                method: 'PUT',
+                body: userData,
+            })
+        }),
     })
 })
 
-export const { useRegistrationMutation, useGetMeQuery } = userApi
+export const { useRegistrationMutation, useGetMeQuery, useGetUsersQuery, useUserUpdateMutation } = userApi

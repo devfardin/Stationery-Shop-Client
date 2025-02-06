@@ -25,6 +25,7 @@ import AdminDashboard from "../components/layout/dashboard/adminDashboard/pages/
 import ProductSingle from "../pages/single/ProductSingle";
 import Checkout from "../pages/single/Checkout";
 import ThankYou from "../components/ThankYou";
+import Users from "../components/layout/dashboard/adminDashboard/pages/Users";
 const router = createBrowserRouter([
     {
         path: '/',
@@ -103,6 +104,10 @@ const router = createBrowserRouter([
             {
                 path: 'orders',
                 element: <AdminProtected> <Orders /> </AdminProtected>
+            },
+            {
+                path: 'users',
+                element: <AdminProtected> <Users /> </AdminProtected>
             },
             // customer routes
         ]

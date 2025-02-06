@@ -1,6 +1,6 @@
 import React from "react";
 import { RxDashboard } from "react-icons/rx";
-import { FaHome } from "react-icons/fa";
+import { FaHome, FaUsers } from "react-icons/fa";
 import { BsBoxSeam, BsCartCheck, BsCartPlus } from "react-icons/bs";
 import { MdOutlineAddchart } from "react-icons/md";
 import SidebarLink from "../component/SidebarLink";
@@ -18,7 +18,7 @@ const AdminMenuItems:React.FC<AdminMenuItemsProps> = ({ isOpen }) => {
         },
         {
           label: 'Dashboard',
-          link: '/dashboard',
+          link: '/admin/dashboard',
           icon: RxDashboard,
         },
         {
@@ -45,6 +45,11 @@ const AdminMenuItems:React.FC<AdminMenuItemsProps> = ({ isOpen }) => {
           label: 'Orders',
           link:'orders',
           icon: BsCartCheck,
+        },
+        {
+          label: 'All Users',
+          link:'users',
+          icon: FaUsers,
         },
       ];
   return (

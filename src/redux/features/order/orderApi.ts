@@ -11,7 +11,7 @@ const productManagementApi = baseApi.injectEndpoints({
         }),
         getOrders: builder.query({
             query: () => ({
-                url: '/orders',
+                url: '/order',
                 method: 'GET',
             })
         }),
@@ -28,7 +28,14 @@ const productManagementApi = baseApi.injectEndpoints({
                 params: {order_id},
                 method: 'GET',
             })
-        })
+        }),
+        updateOrderStatus: builder.mutation({
+            query: (userData) => ({
+                url: '/order',
+                method: 'PUT',
+                body: userData,
+            })
+        }),
     })
 })
-export const { useAddOrderMutation, useGetOrdersQuery, useUpdateOrdersMutation, useVerifyOrderQuery } = productManagementApi;
+export const { useAddOrderMutation, useGetOrdersQuery, useUpdateOrdersMutation, useVerifyOrderQuery, useUpdateOrderStatusMutation } = productManagementApi;
