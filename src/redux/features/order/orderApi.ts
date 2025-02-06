@@ -22,6 +22,13 @@ const productManagementApi = baseApi.injectEndpoints({
                     body: data,
             })
         }),
+        verifyOrder: builder.query({
+            query: ({order_id}) => ({
+                url: `/order/verify`,
+                params: {order_id},
+                method: 'GET',
+            })
+        })
     })
 })
-export const { useAddOrderMutation, useGetOrdersQuery, useUpdateOrdersMutation } = productManagementApi;
+export const { useAddOrderMutation, useGetOrdersQuery, useUpdateOrdersMutation, useVerifyOrderQuery } = productManagementApi;

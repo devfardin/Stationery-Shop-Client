@@ -49,8 +49,9 @@ const Checkout = () => {
       toast.error(errorMessage, { id: toastId })
     } else {
       const success = result.data?.message;
-      // const paymentUrl = result?.data?.data;
-      // window.location.replace(paymentUrl)
+      const paymentUrl = result?.data.data.payment.checkout_url;
+      console.log(paymentUrl);
+      window.location.replace(paymentUrl)
       toast.success(success, { id: toastId })
     }
   }
