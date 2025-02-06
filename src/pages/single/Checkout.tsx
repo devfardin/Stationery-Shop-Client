@@ -16,6 +16,7 @@ import LinkButton from "../../components/share/LinkButton";
 
 const Checkout = () => {
   const userInfo = useAppSelector(selectCurrentUser);
+  
   const [addOrder] = useAddOrderMutation();
   const { data: getCartItems, isFetching } = useGetItemsBaseUserQuery(userInfo?.userEmail);
   const calculateTotalPrice = () => {
@@ -23,18 +24,22 @@ const Checkout = () => {
       return total + item.product.price * item.quantity;
     }, 0);
   };
-
-
   const handleCheckOut = async (data: FieldValues) => {
     const toastId = toast.loading('Order Creating');
     const shiping = data;
     const porducts = getCartItems.data.map((item: TCartItem) => { return item.product })
     const cartId = getCartItems.data.map((item: TCartItem) => { return item._id })
+    const user = {
+      email: userInfo?.userEmail,
+      id: userInfo?.userId,
+    }
+    
     const checkoutInfo = {
       shiping,
       porducts,
       cartId,
-      TotalPrice:calculateTotalPrice() 
+      TotalPrice:calculateTotalPrice(),
+      user,
     }
     const result = await addOrder(checkoutInfo);
     console.log(result);
@@ -43,7 +48,9 @@ const Checkout = () => {
       const errorMessage = (result?.error as TError).data?.message;
       toast.error(errorMessage, { id: toastId })
     } else {
-      const success = result.data.message;
+      const success = result.data?.message;
+      // const paymentUrl = result?.data?.data;
+      // window.location.replace(paymentUrl)
       toast.success(success, { id: toastId })
     }
   }
@@ -78,7 +85,10 @@ const Checkout = () => {
                 <STInput name="firstName" label="First Name" type="text" />
                 <STInput name="lastName" label="Last Name" type="text" />
               </div>
-              <STInput name="address" label="address" type="text" />
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 justify-between items-center">
+              <STInput name="phone" label="Phone number" type="text" />
+              <STInput name="address" label="Address" type="text" />
+              </div>
               <STInput name="Apartment" label="Apartment, suite, etc. (optional)" type="text" />
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5 justify-between items-center">
                 <STInput name="city" label="City" type="text" />
