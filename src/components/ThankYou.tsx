@@ -30,7 +30,7 @@ const ThankYou = () => {
     }, [countdown, isRedirecting]);
   
     const handleContinue = () => {
-      window.location.replace('http://localhost:5173')
+      window.location.replace('https://stationery-shop-frontend.vercel.app')
     };
   
     const handleDownload = () => {
