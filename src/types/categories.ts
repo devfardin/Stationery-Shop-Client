@@ -13,7 +13,7 @@ type TAuthor = {
    };
 
    export type TUsers = {
-    _id: string,
+    _id?: string,
     firstName: string,
     lastName: string,
     email: string,

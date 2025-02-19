@@ -4,27 +4,31 @@ import SectionHeading from '../../components/share/SectionHeading'
 import { Swiper, SwiperSlide } from "swiper/react";
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
 import { Navigation } from "swiper/modules";
+type TTestimonial = {
+    name: string,
+    image: string,
+    rating: string,
+    comment: string,
+}
 const Testimonials = () => {
-    const [loading, setLoading] = useState(false);
     const [data, setData] = useState([]);
-
-    useEffect(()=>{
+    useEffect(() => {
         fetch('./testimonials.json')
-        .then((res)=>res.json())
-        .then((data) => setData(data))
-    },[])
-  return (
-    <div className="mt-20">
+            .then((res) => res.json())
+            .then((data) => setData(data))
+    }, [])
+    return (
+        <div className="mt-20">
             <Container>
                 <div>
-                    <SectionHeading title="What They Say" subTitle='CUSTOMER TESTIMONIALS'/>
+                    <SectionHeading title="What They Say" subTitle='CUSTOMER TESTIMONIALS' />
 
                     <div className="relative group">
                         <Swiper
                             slidesPerView={1}
                             spaceBetween={30}
                             breakpoints={{
-                               
+
                                 640: {
                                     slidesPerView: 1,
                                     spaceBetween: 20,
@@ -46,8 +50,8 @@ const Testimonials = () => {
                             }}
                             className="mySwiper"
                         >
-                            {data?.map((items, index) => (
-                                <SwiperSlide key={index}>
+                            {data?.map((items: TTestimonial) => (
+                                <SwiperSlide key={items?.name}>
                                     <div className="bg-[#F8F8F8] p-10 rounded-bl-3xl rounded-tr-3xl">
                                         <div className='flex items-center gap-4'>
                                             <img className='w-[100px] h-[100px] rounded-full' src={items?.image} alt="Client Profile" />
@@ -55,10 +59,10 @@ const Testimonials = () => {
                                                 <h1 className='text-xl text-black font-bold'>{items?.name}</h1>
                                                 <span className='text-lg font-medium text-neutral-500'>{items?.rating} ⭐</span>
                                             </div>
-                                        </div> 
+                                        </div>
                                         <div className='mt-2'>
-                                        <p className='text-base font-normal text-neutral-600'>{items?.comment}</p>
-                                        </div>                                   
+                                            <p className='text-base font-normal text-neutral-600'>{items?.comment}</p>
+                                        </div>
                                     </div>
                                 </SwiperSlide>
                             ))}
@@ -80,7 +84,7 @@ const Testimonials = () => {
                 </div>
             </Container>
         </div>
-  )
+    )
 }
 
 export default Testimonials

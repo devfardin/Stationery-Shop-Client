@@ -10,7 +10,7 @@ const ThankYou = () => {
     console.log(data);
 
     const [countdown, setCountdown] = useState(5);
-    const [isRedirecting, setIsRedirecting] = useState(true);
+    const [isRedirecting] = useState(true);
   
     const transactionDetails = {
       transactionId: "TXN789456123",
@@ -111,7 +111,7 @@ const ThankYou = () => {
         </div>
       </div>
 
-      <style jsx>{`
+      <style> {`
         @keyframes fade-in {
           from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }

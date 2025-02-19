@@ -28,15 +28,16 @@ const Users = () => {
      }, toastId as number)
    }
   };
-  const dataTable = users?.data?.map(({ _id, firstName, lastName, email, role
-  }: TUsers, index: string) => ({
-    key: _id,
-    firstName,
-    lastName,
-    email,
-    role,
-    index: index + 1,
-  }));
+  const dataTable = Array.isArray(users?.data)
+  ? users?.data.map(({ _id, firstName, lastName, email, role }: TUsers, index: number) => ({
+      key: _id,
+      firstName,
+      lastName,
+      email,
+      role,
+      index: index + 1, // Fix: `index` should be a number, not a string
+    }))
+  : [];
 
   const columns: TableColumnsType<TUsers> = [
     {

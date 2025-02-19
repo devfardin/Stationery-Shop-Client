@@ -1,8 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Swiper, SwiperSlide } from "swiper/react";
-
 import { Navigation } from "swiper/modules";
-import { useEffect, useState } from "react";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 import Container from "../../components/share/Container";
 import SectionHeading from "../../components/share/SectionHeading";
@@ -10,8 +7,8 @@ import { useGetProductsQuery } from "../../redux/features/product/productApi";
 import { useCategoriesQuery } from "../../redux/features/category/categoryApi";
 import { TCategory, TProducts } from "../../types/product";
 const Categories = () => {
-    const { data: products, isLoading } = useGetProductsQuery(undefined);
-    const { data: categorys, isLoading: loading } = useCategoriesQuery(undefined);
+    const { data: products,  } = useGetProductsQuery(undefined);
+    const { data: categorys, } = useCategoriesQuery(undefined);
 
 
     return (

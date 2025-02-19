@@ -30,7 +30,7 @@ const Orders = () => {
       }, toastId as number)
     }
    };
-  const dataTable = getOrders?.data?.map(({ _id, porducts, shiping, user, status, transation, 
+  const dataTable = getOrders?.data?.map(({ _id, porducts, shiping, status, transation, 
   }: TOrder, index: string) => ({
     key: _id,
     customer: `${shiping.firstName} ${shiping.lastName}`,

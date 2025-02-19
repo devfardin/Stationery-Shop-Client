@@ -1,7 +1,6 @@
 import Categories from "./Categories"
 import HeroSection from "./HeroSection"
 import PopularProducts from "./PopularProducts"
-import Testimonials from "./Testimonials"
 import TopRatedProducts from "./TopRatedProducts"
 
 const Home = () => {
@@ -11,7 +10,6 @@ const Home = () => {
       <Categories/>
       <PopularProducts/>
       <TopRatedProducts/>
-      <Testimonials/>
     </div>
   )
 }

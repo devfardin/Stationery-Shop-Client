@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
+ 
 import React, { useState } from 'react'
 import { RxCross1, RxHamburgerMenu } from 'react-icons/rx'
 // import MobileFilter from './MobileFilter'
