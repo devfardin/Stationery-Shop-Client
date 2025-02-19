@@ -3,6 +3,8 @@
 ## 📌 Overview  
 The **Stationery Shop** is a **responsive** e-commerce platform where users can **browse, search, and purchase stationery products** with a seamless shopping experience. It features **secure authentication, role-based dashboards, product management, and order handling**. The application follows **modern UI/UX principles** for a user-friendly and visually appealing experience.  
 
+🚀 **Live Site:** [Stationery Shop](https://stationery-shop-frontend.vercel.app/)  
+
 ---
 
 ## 🚀 Features  
